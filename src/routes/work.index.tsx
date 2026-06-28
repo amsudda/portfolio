@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
-import { projects, type ProjectCategory } from "@/data/projects";
+import type { ProjectCategory } from "@/data/projects";
+import { fetchProjects } from "@/lib/projects.fn";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { ProjectCard } from "@/components/project-card";
@@ -8,39 +9,41 @@ import { ProjectCard } from "@/components/project-card";
 export const Route = createFileRoute("/work/")({
   head: () => ({
     meta: [
-      { title: "Work — Aris Moreau / Studio" },
+      { title: "Work — idearigs studio" },
       {
         name: "description",
         content:
-          "Selected video projects: brand films, commercials, documentaries, events, and social. Each piece presented as a full case study.",
+          "Selected marketing projects: short-form social, paid ad campaigns, product launches, and long-form content. Each piece presented as a full case study.",
       },
-      { property: "og:title", content: "Work — Aris Moreau / Studio" },
+      { property: "og:title", content: "Work — idearigs studio" },
       {
         property: "og:description",
         content:
-          "Selected video projects: brand films, commercials, documentaries, events, and social. Each piece presented as a full case study.",
+          "Selected marketing projects: short-form social, paid ad campaigns, product launches, and long-form content. Each piece presented as a full case study.",
       },
       { property: "og:url", content: "/work" },
     ],
     links: [{ rel: "canonical", href: "/work" }],
   }),
+  loader: async () => ({ projects: await fetchProjects() }),
   component: WorkIndex,
 });
 
 const ALL = "All Work" as const;
 
 function WorkIndex() {
+  const { projects } = Route.useLoaderData();
   const categories = useMemo(() => {
     const set = new Set<ProjectCategory>();
     projects.forEach((p) => set.add(p.category));
     return [ALL, ...Array.from(set)] as const;
-  }, []);
+  }, [projects]);
 
-  const [active, setActive] = useState<(typeof categories)[number]>(ALL);
+  const [active, setActive] = useState<string>(ALL);
 
   const filtered = useMemo(
     () => (active === ALL ? projects : projects.filter((p) => p.category === active)),
-    [active]
+    [active, projects]
   );
 
   return (

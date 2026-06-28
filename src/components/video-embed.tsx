@@ -4,7 +4,7 @@ import { PlayIcon } from "./icons";
 interface VideoEmbedProps {
   url?: string;
   aspect?: "16/9" | "9/16" | "1/1";
-  poster?: { from: string; to: string; label?: string };
+  poster?: { from: string; to: string; label?: string; image?: string };
   caption?: string;
   className?: string;
 }
@@ -33,11 +33,17 @@ export function VideoEmbed({
       <div
         className={`group relative ${aspectClass} w-full overflow-hidden rounded-lg bg-surface`}
         style={
-          poster
+          poster?.image
             ? {
-                backgroundImage: `linear-gradient(135deg, ${poster.from}, ${poster.to})`,
+                backgroundImage: `url(${poster.image})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
               }
-            : undefined
+            : poster
+              ? {
+                  backgroundImage: `linear-gradient(135deg, ${poster.from}, ${poster.to})`,
+                }
+              : undefined
         }
       >
         {active && embedUrl ? (
@@ -84,6 +90,21 @@ export function VideoEmbed({
       )}
     </figure>
   );
+}
+
+/** Returns a YouTube thumbnail image URL for a watch/short link, else undefined. */
+export function youtubeThumbnail(url?: string): string | undefined {
+  if (!url) return undefined;
+  try {
+    const u = new URL(url);
+    let id: string | null = null;
+    if (u.hostname.includes("youtube.com")) id = u.searchParams.get("v");
+    else if (u.hostname === "youtu.be") id = u.pathname.slice(1);
+    if (id) return `https://img.youtube.com/vi/${id}/hqdefault.jpg`;
+  } catch {
+    /* not a valid URL */
+  }
+  return undefined;
 }
 
 function toEmbedUrl(url: string): string {

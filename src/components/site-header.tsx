@@ -33,7 +33,7 @@ export function SiteHeader() {
             ◐
           </span>
           <span className="font-display text-base tracking-tight">
-            Aris Moreau<span className="text-muted-foreground"> / Studio</span>
+            idearigs<span className="text-muted-foreground"> studio</span>
           </span>
         </Link>
 

@@ -6,17 +6,17 @@ import { ArrowRightIcon } from "@/components/icons";
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "About — Aris Moreau / Studio" },
+      { title: "About — idearigs studio" },
       {
         name: "description",
         content:
-          "Videographer and editor working in-house at a creative studio. A short note on philosophy, services, and process.",
+          "A videography and editing team working in-house at a creative studio. A short note on our philosophy, services, and process.",
       },
-      { property: "og:title", content: "About — Aris Moreau / Studio" },
+      { property: "og:title", content: "About — idearigs studio" },
       {
         property: "og:description",
         content:
-          "Videographer and editor working in-house at a creative studio. A short note on philosophy, services, and process.",
+          "A videography and editing team working in-house at a creative studio. A short note on our philosophy, services, and process.",
       },
       { property: "og:url", content: "/about" },
     ],
@@ -26,18 +26,18 @@ export const Route = createFileRoute("/about")({
 });
 
 const SERVICES = [
-  { title: "Videography", body: "Direction, cinematography, and on-set producing — single-camera to small unit." },
-  { title: "Editing", body: "Long-form, brand films, and rapid social cutdowns. Story first, technique second." },
-  { title: "Color", body: "Resolve grading with custom LUTs built per project. Skin tones held, mood pushed." },
-  { title: "Motion", body: "Type, lower-thirds, and end-card work that supports the cut without competing with it." },
+  { title: "Short-Form Social", body: "Hook-first Reels, TikToks, and Shorts made to stop the scroll and travel." },
+  { title: "Paid Ad Creative", body: "Modular ad variants and hook tests built to lower cost-per-acquisition and beat creative fatigue." },
+  { title: "Brand & Product Content", body: "Launch films, product stories, and campaign hero content — framed vertical and wide." },
+  { title: "Long-Form & Photography", body: "YouTube and docu-style series that build trust, plus campaign stills that match the motion work." },
 ];
 
 const PROCESS = [
-  { step: "01", title: "Discovery", body: "We start with the brief and the audience. What does success look like? Who is this actually for?" },
-  { step: "02", title: "Direction", body: "A short treatment with references, tone, and a shot logic. Approved before we touch a camera." },
-  { step: "03", title: "Production", body: "Small, deliberate crews. We protect the schedule and the subject in equal measure." },
-  { step: "04", title: "Post", body: "An edit room you're welcome in. Two structured rounds of notes, plus polish." },
-  { step: "05", title: "Delivery", body: "Master plus every cutdown the brief needs — vertical, square, captioned, framed for spec." },
+  { step: "01", title: "Strategy", body: "We start with the goal and the platform. What's the campaign for, who's it for, and what does winning look like?" },
+  { step: "02", title: "Concept", body: "Hooks, angles, and a content plan — references and a shot logic, approved before we shoot." },
+  { step: "03", title: "Production", body: "Lean, fast shoots built for volume. We capture wide, vertical, and stills in a single go." },
+  { step: "04", title: "Post", body: "Edits built to test — multiple hooks and cutdowns per concept, framed for every platform." },
+  { step: "05", title: "Launch", body: "Master plus every cutdown the campaign needs — 9:16, 1:1, 16:9, captioned and spec-ready. Then we read the numbers with you." },
 ];
 
 function AboutPage() {
@@ -51,7 +51,7 @@ function AboutPage() {
             About
           </p>
           <h1 className="mt-6 max-w-5xl font-display text-[clamp(2.75rem,8vw,8rem)] leading-[0.95] tracking-[-0.035em] animate-fade-up text-balance">
-            I make films the way
+            We make films the way
             <br />
             <span className="italic text-primary">a writer drafts</span> — slowly, then all at once.
           </h1>
@@ -67,20 +67,20 @@ function AboutPage() {
             </div>
             <div className="space-y-6 text-lg leading-relaxed text-foreground/90 md:text-xl text-pretty">
               <p>
-                I'm Aris Moreau, a videographer and editor working in-house at a creative
-                studio. I've spent the last seven years making brand films, documentaries,
+                We're a videography and editing team working in-house at a creative
+                studio. We've spent the last seven years making brand films, documentaries,
                 and commercial work for clients who care more about the second viewing than
                 the first.
               </p>
               <p className="text-muted-foreground">
-                My background is in editorial — which is to say I learned to cut before I
-                learned to shoot, and it shows. I value rhythm over coverage, restraint
+                Our background is in editorial — which is to say we learned to cut before we
+                learned to shoot, and it shows. We value rhythm over coverage, restraint
                 over flourish, and the moment a film stops feeling assembled and starts
                 feeling authored.
               </p>
               <p className="text-muted-foreground">
-                Outside the studio I shoot 35mm, read too many short stories, and run very
-                slowly.
+                Off the clock we shoot 35mm, read too many short stories, and chase the
+                kind of light you can't schedule.
               </p>
             </div>
           </div>
@@ -94,7 +94,7 @@ function AboutPage() {
             <div>
               <p className="text-[10px] uppercase tracking-[0.3em] text-muted-foreground">(02) Services</p>
               <h2 className="mt-4 font-display text-3xl leading-tight tracking-tight md:text-5xl">
-                What I do.
+                What we do.
               </h2>
             </div>
             <div className="grid gap-px overflow-hidden rounded-lg bg-border sm:grid-cols-2">

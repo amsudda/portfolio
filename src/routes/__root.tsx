@@ -77,20 +77,20 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Aris Moreau — Videographer & Editor" },
+      { title: "idearigs studio — Social & Marketing Content" },
       {
         name: "description",
         content:
-          "Project-based portfolio of a videographer and editor: brand films, commercials, documentaries, and event work shaped by a deliberate creative process.",
+          "idearigs studio — a marketing studio that films and edits content for brands. Project-based portfolio of short-form social, paid ads, product launches, and long-form work.",
       },
-      { property: "og:title", content: "Aris Moreau — Videographer & Editor" },
+      { property: "og:title", content: "idearigs studio — Social & Marketing Content" },
       {
         property: "og:description",
         content:
-          "Project-based portfolio of a videographer and editor: brand films, commercials, documentaries, and event work shaped by a deliberate creative process.",
+          "idearigs studio — a marketing studio that films and edits content for brands. Project-based portfolio of short-form social, paid ads, product launches, and long-form work.",
       },
       { property: "og:type", content: "website" },
-      { property: "og:site_name", content: "Aris Moreau / Studio" },
+      { property: "og:site_name", content: "idearigs studio" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [

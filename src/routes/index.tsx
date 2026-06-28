@@ -1,36 +1,39 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { projects } from "@/data/projects";
+import { fetchProjects } from "@/lib/projects.fn";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { ProjectCard } from "@/components/project-card";
 import { SectionHeading } from "@/components/section-heading";
 import { ArrowRightIcon } from "@/components/icons";
+import { PixelHero } from "@/components/pixel-hero";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Aris Moreau — Videographer & Editor" },
+      { title: "idearigs studio — Social & Marketing Content" },
       {
         name: "description",
         content:
-          "A project-based portfolio. Brand films, commercials, documentaries, and event work shaped by a deliberate creative process.",
+          "A project-based portfolio of social and marketing content — short-form, paid ads, product launches, and long-form. Every piece shown as a full case study.",
       },
-      { property: "og:title", content: "Aris Moreau — Videographer & Editor" },
+      { property: "og:title", content: "idearigs studio — Social & Marketing Content" },
       {
         property: "og:description",
         content:
-          "A project-based portfolio. Brand films, commercials, documentaries, and event work shaped by a deliberate creative process.",
+          "A project-based portfolio of social and marketing content — short-form, paid ads, product launches, and long-form. Every piece shown as a full case study.",
       },
       { property: "og:url", content: "/" },
     ],
     links: [{ rel: "canonical", href: "/" }],
   }),
+  loader: async () => ({ projects: await fetchProjects() }),
   component: HomePage,
 });
 
 const CLIENTS = ["Northwind", "Halcyon Audio", "Atlas Foundation", "Meridian", "Field & Co.", "Verity"];
 
 function HomePage() {
+  const { projects } = Route.useLoaderData();
   const featured = projects.slice(0, 4);
 
   return (
@@ -39,13 +42,17 @@ function HomePage() {
 
       {/* HERO */}
       <section className="relative grain overflow-hidden pt-40 pb-24 md:pt-56 md:pb-32">
-        {/* Ambient cinematic backdrop (showreel placeholder) */}
+        {/* Pixel-art animated backdrop */}
+        <div aria-hidden className="absolute inset-0 -z-20 opacity-90">
+          <PixelHero className="h-full w-full" />
+        </div>
+        {/* Readability scrim — keeps the left-side text crisp over the animation */}
         <div
           aria-hidden
-          className="absolute inset-0 -z-10 opacity-60"
+          className="absolute inset-0 -z-10"
           style={{
             backgroundImage:
-              "radial-gradient(60% 60% at 80% 20%, rgba(217,160,80,0.18) 0%, transparent 60%), radial-gradient(70% 70% at 10% 90%, rgba(60,90,140,0.18) 0%, transparent 60%)",
+              "linear-gradient(90deg, var(--background) 0%, color-mix(in oklab, var(--background) 75%, transparent) 38%, transparent 72%), linear-gradient(to bottom, transparent 60%, var(--background) 100%)",
           }}
         />
         <div className="mx-auto max-w-[1400px] px-6 md:px-10">
@@ -58,16 +65,16 @@ function HomePage() {
           </div>
 
           <h1 className="mt-8 font-display text-[clamp(3rem,9vw,9rem)] leading-[0.95] tracking-[-0.035em] animate-fade-up">
-            Films that
+            Content that
             <br />
-            <span className="italic text-primary">earn</span> attention.
+            <span className="italic text-primary">earns</span> attention.
           </h1>
 
           <div className="mt-12 grid gap-10 md:grid-cols-[1.4fr_1fr] md:items-end">
             <p className="max-w-xl text-lg leading-relaxed text-muted-foreground text-pretty md:text-xl">
-              I'm Aris — a videographer and editor working in-house at a creative studio.
-              Every piece here is a project, not a showreel cut: a brief, an approach,
-              a process, and a result.
+              We're a marketing studio that films and edits content for brands — built for
+              social, made to perform. Every piece here is a project, not a showreel cut:
+              a brief, an approach, a process, and a result.
             </p>
             <div className="flex flex-wrap items-center gap-4">
               <Link
@@ -113,17 +120,17 @@ function HomePage() {
             </div>
             <div>
               <p className="font-display text-3xl leading-[1.15] tracking-tight text-balance md:text-5xl">
-                A reel shows you what a film looks like.
+                A post shows you what a video looks like.
                 <span className="text-muted-foreground">
                   {" "}
-                  A project shows you how the thinking holds up — the brief, the
-                  decisions, the trade-offs, the result.
+                  A project shows you what it was for — the goal, the decisions, the
+                  trade-offs, and the numbers it moved.
                 </span>
               </p>
               <p className="mt-10 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">
                 Every piece on this site is presented as a case study. You'll see what
-                the client needed, the creative direction we took, how it was made, and
-                what it earned. The work is the proof; the process is the promise.
+                the brand needed, the creative direction we took, how it was made, and
+                what it earned. The work is the proof; the results are the point.
               </p>
             </div>
           </div>

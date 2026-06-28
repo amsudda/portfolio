@@ -19,9 +19,17 @@ export function ProjectCard({ project, index, size = "default" }: ProjectCardPro
         className={`relative w-full overflow-hidden rounded-lg bg-surface ${
           size === "large" ? "aspect-[16/10]" : "aspect-[4/3]"
         }`}
-        style={{
-          backgroundImage: `linear-gradient(135deg, ${project.thumbnail.from}, ${project.thumbnail.to})`,
-        }}
+        style={
+          project.thumbnail.image
+            ? {
+                backgroundImage: `url(${project.thumbnail.image})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+              }
+            : {
+                backgroundImage: `linear-gradient(135deg, ${project.thumbnail.from}, ${project.thumbnail.to})`,
+              }
+        }
       >
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent transition-opacity duration-700 group-hover:opacity-80" />
 

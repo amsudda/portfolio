@@ -1,9 +1,9 @@
 export type ProjectCategory =
-  | "Brand Film"
-  | "Commercial"
-  | "Event"
-  | "Social / Reels"
-  | "Documentary";
+  | "Short-Form Social"
+  | "Paid Ad Campaign"
+  | "Product Launch"
+  | "Brand Content"
+  | "Long-Form";
 
 export type MediaBlock =
   | { type: "video"; url: string; aspect?: "16/9" | "9/16" | "1/1"; caption?: string }
@@ -18,7 +18,7 @@ export interface Project {
   client: string;
   year: number;
   category: ProjectCategory;
-  role: string;
+  role: string; // what we handled — e.g. "Strategy · Production · Edit"
   deliverables: string[];
   hook: string; // 1-line teaser shown on hover/card
   brief: string;
@@ -29,182 +29,203 @@ export interface Project {
   testimonial?: { quote: string; author: string; role?: string };
   heroVideoUrl: string; // YouTube/Vimeo URL — placeholder for now
   thumbnail: {
-    // Gradient placeholder spec until real posters land
+    // Gradient placeholder spec until real posters land.
+    // If `image` is set (a URL or uploaded data URL) it's used as the poster instead.
     from: string;
     to: string;
     label?: string;
+    image?: string;
   };
 }
 
 export const projects: Project[] = [
   {
     id: "p1",
-    slug: "northwind-origin",
-    title: "Origin",
-    client: "Northwind Coffee",
+    slug: "lumi-glow-launch",
+    title: "Glow Story",
+    client: "Lumi Skincare",
     year: 2025,
-    category: "Brand Film",
-    role: "Director, DP, Editor",
-    deliverables: ["90s Hero Film", "30s Cutdown", "6× Social Reels"],
-    hook: "A coffee roaster's first decade, told in a single morning shift.",
+    category: "Short-Form Social",
+    role: "Strategy · Production · Edit",
+    deliverables: ["12× Reels / TikToks", "4× Paid Cutdowns", "Hook Test Pack"],
+    hook: "A serum launch built for the For You page — 12 vertical pieces in three weeks.",
     brief:
-      "Northwind was approaching its tenth year and wanted a brand film that moved beyond product shots. The ask: a piece that anchored the company in craft and people — something that could open investor conversations and live at the top of their site for the next two years.",
+      "Lumi was launching a new serum into a crowded skincare market with no existing social presence. They needed to build awareness fast on TikTok and Reels — and the content had to feel native to the feed, not like a TV ad squeezed into vertical.",
     approach:
-      "We resisted the urge to narrate. Instead, we built the film around one continuous morning at the roastery — letting machinery, hands, and ambient sound carry the story. Shot on an Alexa Mini with vintage Zeiss glass for organic texture; graded warm with lifted blacks to feel lived-in rather than polished.",
+      "We didn't make one hero film — we built a content engine. A batch of hook-first vertical pieces, each opening on a different angle (texture, before/after, founder voice, fast routine), so we could test what the algorithm rewarded and double down. Shot fast and clean, lit to look like daylight, cut to land the hook inside the first second.",
     process: [
       {
         type: "text",
-        heading: "Pre-production",
-        body: "Two weeks of location scouting and shadowing the morning team. We mapped a shot list to the actual rhythm of the shift so the crew never broke the workflow.",
-      },
-      {
-        type: "video",
-        url: "",
-        aspect: "16/9",
-        caption: "Behind-the-scenes: the 4:30 AM roast cycle",
-      },
-      {
-        type: "text",
-        heading: "Production",
-        body: "Single-camera, two-person crew over three mornings. Natural light only, supplemented with a single bounce. Sound recorded live — no foley in post.",
+        heading: "Strategy & hooks",
+        body: "We mapped twelve hook angles to the launch goals before a camera came out. Every concept had to earn its first 1.5 seconds — that's where the scroll is won or lost.",
       },
       {
         type: "video",
         url: "",
         aspect: "9/16",
-        caption: "Vertical cutdown for Instagram",
+        caption: "Top-performing hook: the 5-second texture test",
+      },
+      {
+        type: "text",
+        heading: "Batch production",
+        body: "One studio day, a single talent, and a tight shot list captured all twelve concepts plus stills. Volume by design — that's what feeds an always-on social calendar.",
+      },
+      {
+        type: "video",
+        url: "",
+        aspect: "9/16",
+        caption: "Founder-voice cut for the launch week",
       },
       {
         type: "quote",
-        text: "They disappeared into the room. By day two we forgot they were filming.",
-        attribution: "Head Roaster, Northwind",
+        text: "Three of the pieces went off on their own. We sold out the first batch before we'd even spent on ads.",
+        attribution: "Founder, Lumi Skincare",
       },
     ],
     result:
-      "The film became the centerpiece of Northwind's anniversary campaign and is now the first thing visitors see on the homepage. It was selected for two regional craft-film showcases and directly cited in their successful Series A pitch deck.",
-    metric: { value: "+34%", label: "site engagement vs. prior hero" },
+      "The launch batch pulled 3.4M organic views in its first month and took Lumi from a standing start to a real social presence. The serum sold out its opening run, and the top three hooks became the backbone of their paid campaign.",
+    metric: { value: "3.4M", label: "organic views in month one" },
     testimonial: {
       quote:
-        "It captured something we'd been trying to articulate for ten years. The team watches it before every offsite.",
-      author: "Mara Ellis",
-      role: "Founder, Northwind Coffee",
+        "They understood the feed better than we did. It didn't look like an ad — and that's exactly why it worked.",
+      author: "Priya Anand",
+      role: "Founder, Lumi Skincare",
     },
     heroVideoUrl: "",
-    thumbnail: { from: "#3a2a1a", to: "#7a4a2a", label: "Origin" },
+    thumbnail: { from: "#1f3320", to: "#3f7a32", label: "Glow Story" },
   },
   {
     id: "p2",
-    slug: "halcyon-launch",
-    title: "Quiet Power",
-    client: "Halcyon Audio",
+    slug: "fern-field-always-on",
+    title: "Always-On",
+    client: "Fern & Field",
     year: 2025,
-    category: "Commercial",
-    role: "Editor, Colorist",
-    deliverables: ["60s TV Spot", "15s Pre-roll", "Cinema 4K Master"],
-    hook: "A product launch that opens with silence — and earns it.",
+    category: "Paid Ad Campaign",
+    role: "Concept · Production · Post",
+    deliverables: ["20× Ad Variants", "Hook Test Matrix", "Static + Motion Pack"],
+    hook: "Performance creative that cut their cost-per-acquisition by a third.",
     brief:
-      "Halcyon's flagship headphone needed a launch spot that competed in a crowded category without resorting to the usual quick-cut, EDM-driven formula. Goal: feel premium, feel calm, feel inevitable.",
+      "Fern & Field, a home-goods brand, had plateaued on paid social. The same few ads had run for months and creative fatigue was driving their cost-per-acquisition up. They needed a steady stream of fresh, on-brand creative built specifically to test and convert.",
     approach:
-      "We cut to the rhythm of breath, not music. The first eighteen seconds carry no score — only room tone and a single product gesture. The score enters only when the user does. Color was pulled toward cool neutrals with a single warm key light on the product to make it the only living thing on screen.",
+      "We treated creative as a system, not a one-off. A matrix of hooks, formats, and angles produced from a single shoot — modular edits we could recombine, so the brand always had something new in rotation. Every variant was framed for the platform and built around a clear, scroll-stopping first frame.",
     process: [
       {
         type: "text",
-        heading: "The edit",
-        body: "Forty hours of footage cut to a 60-second master, then bracketed into a 30 and two 15s. Each cutdown preserves the silent opening — that was the rule.",
-      },
-      {
-        type: "video",
-        url: "",
-        aspect: "16/9",
-        caption: "Final 60s spot",
-      },
-      {
-        type: "text",
-        heading: "Color",
-        body: "Graded in DaVinci Resolve. Custom LUT built from a base ARRI K1S1 with cool shadow rolloff. Skin tones held with a qualifier-driven secondary.",
-      },
-    ],
-    result:
-      "Spot ran across YouTube pre-roll and cinema in five markets. Halcyon reported the strongest launch-week direct traffic in company history.",
-    metric: { value: "2.1M", label: "organic views in week one" },
-    heroVideoUrl: "",
-    thumbnail: { from: "#1a2030", to: "#2a3a55", label: "Quiet Power" },
-  },
-  {
-    id: "p3",
-    slug: "field-notes-doc",
-    title: "Field Notes",
-    client: "Atlas Foundation",
-    year: 2024,
-    category: "Documentary",
-    role: "DP, Co-Editor",
-    deliverables: ["22min Documentary", "3× Chapter Reels", "Festival Master"],
-    hook: "Three soil scientists. One drought year. A film about patience.",
-    brief:
-      "Atlas commissioned a long-form piece to accompany a five-year research grant. The film needed to work for two very different audiences: scientific peers reviewing the grant, and a general public that funds the foundation.",
-    approach:
-      "We structured the film around the seasons rather than the science. The data is there — overlaid sparingly — but the spine is three people doing slow, careful work in a landscape that doesn't reward urgency.",
-    process: [
-      {
-        type: "text",
-        heading: "A year on location",
-        body: "Eleven trips across fourteen months. We shot in every season so the land itself became a character.",
-      },
-      {
-        type: "video",
-        url: "",
-        aspect: "16/9",
-        caption: "Chapter One: Spring",
-      },
-      {
-        type: "quote",
-        text: "The first cut made me cry, and I'm the one who lived it.",
-        attribution: "Dr. Imani Reyes, Lead Researcher",
+        heading: "The testing matrix",
+        body: "Five hooks × four formats from one production day. Modular b-roll and statics meant we could assemble twenty distinct ads without twenty separate shoots.",
       },
       {
         type: "video",
         url: "",
         aspect: "9/16",
-        caption: "Festival teaser",
+        caption: "Winning variant — problem/solution hook",
+      },
+      {
+        type: "text",
+        heading: "Read, cut, repeat",
+        body: "We watched the numbers with the brand each week and recut around the winners — trimming hooks, swapping openers, and refreshing the angles that were fatiguing.",
       },
     ],
     result:
-      "Selected for two environmental film festivals and used by Atlas as the lead asset in their next grant cycle, which closed 40% over goal.",
-    metric: { value: "2 festivals", label: "official selection" },
+      "The new creative dropped cost-per-acquisition by 32% within six weeks and gave Fern & Field a repeatable content pipeline instead of a one-time burst. The account has stayed in profit on paid social ever since.",
+    metric: { value: "-32%", label: "cost per acquisition" },
+    testimonial: {
+      quote:
+        "For the first time our ads stopped fatiguing, because there was always something new and on-brand to swap in.",
+      author: "Daniel Brooks",
+      role: "Head of Growth, Fern & Field",
+    },
     heroVideoUrl: "",
-    thumbnail: { from: "#1f2a1a", to: "#3a4a28", label: "Field Notes" },
+    thumbnail: { from: "#1a2030", to: "#2a3a55", label: "Always-On" },
   },
   {
-    id: "p4",
-    slug: "meridian-summit",
-    title: "Summit",
-    client: "Meridian Group",
-    year: 2024,
-    category: "Event",
-    role: "Lead Editor",
-    deliverables: ["3min Recap", "12× Speaker Cuts", "Sizzle Reel"],
-    hook: "A two-day conference, cut into a film that earned a standing ovation at closing.",
+    id: "p3",
+    slug: "northpeak-unboxed",
+    title: "Unboxed",
+    client: "Northpeak",
+    year: 2025,
+    category: "Product Launch",
+    role: "Strategy · Film · Photo · Edit",
+    deliverables: ["Launch Film (16:9 + 9:16)", "6× Teaser Reels", "Photography Set"],
+    hook: "A product drop teased, launched, and sustained across a full content calendar.",
     brief:
-      "Meridian's annual summit needed a same-week recap film to anchor post-event marketing and a sizzle reel that could play at the closing keynote — meaning the edit had to finish during the event itself.",
+      "Northpeak was releasing a new piece of outdoor gear and wanted more than a single launch video — they needed a coordinated rollout that built anticipation, landed the launch, and kept momentum going for weeks after.",
     approach:
-      "We embedded a three-person edit bay on site. Footage moved from camera to NLE within the hour. By prioritizing emotional through-lines over coverage, we delivered a film that felt authored, not assembled.",
+      "We planned the content as a campaign arc: cryptic teasers to build curiosity, a hero launch film for the drop, then a steady run of sustain reels and stills to keep the product in feed. One production captured everything — motion and photography — so the whole calendar stayed visually consistent.",
     process: [
       {
         type: "text",
-        heading: "On-site post",
-        body: "A pop-up edit suite running two Resolve stations and a shared media pool. Turnaround: 36 hours from final keynote to playback.",
+        heading: "The rollout",
+        body: "Three phases — tease, launch, sustain — mapped to a four-week calendar before we shot a frame. Each asset had a job and a slot.",
       },
       {
         type: "video",
         url: "",
         aspect: "16/9",
-        caption: "Closing-night recap film",
+        caption: "Hero launch film",
+      },
+      {
+        type: "video",
+        url: "",
+        aspect: "9/16",
+        caption: "Teaser cut — day one",
+      },
+      {
+        type: "quote",
+        text: "It felt like a launch with a heartbeat. Every few days there was something new dropping.",
+        attribution: "Marketing Lead, Northpeak",
       },
     ],
     result:
-      "The recap played at the closing session to a standing ovation. Meridian extended the engagement to a multi-year contract.",
+      "The drop sold out its first run in 72 hours, and the sustain content kept engagement high through the following month instead of spiking and fading. Northpeak now runs every release on the same rollout playbook.",
+    metric: { value: "72 hrs", label: "to sell out the first run" },
     heroVideoUrl: "",
-    thumbnail: { from: "#2a1a2a", to: "#4a2a45", label: "Summit" },
+    thumbnail: { from: "#2a1a2a", to: "#4a2a45", label: "Unboxed" },
+  },
+  {
+    id: "p4",
+    slug: "atlas-the-build",
+    title: "The Build",
+    client: "Atlas Coffee Co.",
+    year: 2024,
+    category: "Long-Form",
+    role: "Direction · DP · Edit",
+    deliverables: ["3× YouTube Episodes", "9× Shorts Cutdowns", "Thumbnails"],
+    hook: "A YouTube series that turned a founder's story into a subscriber engine.",
+    brief:
+      "Atlas had a strong short-form presence but no depth — plenty of reach, little trust. They wanted long-form content on YouTube that let people actually get to know the brand and the people behind it, and that could feed their short-form channels at the same time.",
+    approach:
+      "We built a docu-style episodic series following the founders through a real season of the business. Long-form for YouTube to build trust and watch time, then cut down into Shorts and reels so a single shoot fed every platform. Honest, unhurried, and made to be watched all the way through.",
+    process: [
+      {
+        type: "text",
+        heading: "One shoot, every platform",
+        body: "We shot each episode to live as a 10-minute YouTube piece and as a dozen vertical cutdowns — so long-form and short-form pulled from the same well.",
+      },
+      {
+        type: "video",
+        url: "",
+        aspect: "16/9",
+        caption: "Episode One: The First Roast",
+      },
+      {
+        type: "video",
+        url: "",
+        aspect: "9/16",
+        caption: "Shorts cutdown from Episode One",
+      },
+    ],
+    result:
+      "The series added 12,000 subscribers in 90 days and gave Atlas a library of content that kept working long after launch. Watch time on the channel more than tripled, and the Shorts cutdowns became some of their best-performing posts of the year.",
+    metric: { value: "+12k", label: "subscribers in 90 days" },
+    testimonial: {
+      quote:
+        "Short-form got us seen. This got us trusted — and it fed the short-form too. Best return we've had on content.",
+      author: "Mara Ellis",
+      role: "Founder, Atlas Coffee Co.",
+    },
+    heroVideoUrl: "",
+    thumbnail: { from: "#3a2a1a", to: "#7a4a2a", label: "The Build" },
   },
 ];
 

@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import type {} from "@tanstack/react-start";
-import { projects } from "@/data/projects";
+import { listProjects } from "@/lib/store.server";
 
 const BASE_URL = "";
 
@@ -8,6 +8,7 @@ export const Route = createFileRoute("/sitemap.xml")({
   server: {
     handlers: {
       GET: async () => {
+        const projects = await listProjects();
         const entries = [
           { path: "/", changefreq: "weekly", priority: "1.0" },
           { path: "/work", changefreq: "weekly", priority: "0.9" },

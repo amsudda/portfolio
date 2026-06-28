@@ -11,6 +11,12 @@ node_modules
 dist
 dist-ssr
 .output
+
+# Local data + secrets
+.data
+.env
+.env.*
+!.env.example
 .vinxi
 .tanstack/**
 .nitro

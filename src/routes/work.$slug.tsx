@@ -1,15 +1,21 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { getAdjacentProjects, getProjectBySlug, type MediaBlock, type Project } from "@/data/projects";
+import type { MediaBlock, Project } from "@/data/projects";
+import { fetchProjects } from "@/lib/projects.fn";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { VideoEmbed } from "@/components/video-embed";
 import { ArrowLeftIcon, ArrowRightIcon } from "@/components/icons";
 
 export const Route = createFileRoute("/work/$slug")({
-  loader: ({ params }) => {
-    const project = getProjectBySlug(params.slug);
-    if (!project) throw notFound();
-    return { project };
+  loader: async ({ params }) => {
+    const all = await fetchProjects();
+    const i = all.findIndex((p) => p.slug === params.slug);
+    if (i === -1) throw notFound();
+    return {
+      project: all[i],
+      prev: all[(i - 1 + all.length) % all.length],
+      next: all[(i + 1) % all.length],
+    };
   },
   head: ({ params, loaderData }) => {
     const p = loaderData?.project;
@@ -17,7 +23,7 @@ export const Route = createFileRoute("/work/$slug")({
     const description = p?.hook ?? "Case study";
     return {
       meta: [
-        { title: `${title} / Aris Moreau` },
+        { title: `${title} / idearigs studio` },
         { name: "description", content: description },
         { property: "og:title", content: title },
         { property: "og:description", content: description },
@@ -60,8 +66,11 @@ export const Route = createFileRoute("/work/$slug")({
 });
 
 function ProjectDetail() {
-  const { project } = Route.useLoaderData() as { project: Project };
-  const { prev, next } = getAdjacentProjects(project.slug);
+  const { project, prev, next } = Route.useLoaderData() as {
+    project: Project;
+    prev: Project;
+    next: Project;
+  };
 
   return (
     <div className="min-h-screen">

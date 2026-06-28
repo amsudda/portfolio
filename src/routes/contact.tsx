@@ -6,13 +6,13 @@ import { SiteFooter } from "@/components/site-footer";
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "Contact — Aris Moreau / Studio" },
+      { title: "Contact — idearigs studio" },
       {
         name: "description",
         content:
           "Get in touch about a brand film, commercial, documentary, or event project. Tell us the brief, timing, and budget — we'll reply within two working days.",
       },
-      { property: "og:title", content: "Contact — Aris Moreau / Studio" },
+      { property: "og:title", content: "Contact — idearigs studio" },
       {
         property: "og:description",
         content:
@@ -64,7 +64,7 @@ function ContactPage() {
                 <h2 className="font-display text-3xl tracking-tight">Thanks — message received.</h2>
                 <p className="mt-3 text-muted-foreground">
                   We'll be in touch within two working days. In the meantime, feel free to
-                  send any reference links or briefs to <span className="text-foreground">studio@example.com</span>.
+                  send any reference links or briefs to <span className="text-foreground">idearigs@gmail.com</span>.
                 </p>
               </div>
             ) : (
@@ -102,10 +102,10 @@ function ContactPage() {
             <div>
               <p className="text-[10px] uppercase tracking-[0.25em] text-muted-foreground">Direct</p>
               <a
-                href="mailto:studio@example.com"
+                href="mailto:idearigs@gmail.com"
                 className="link-underline mt-3 inline-block font-display text-2xl tracking-tight md:text-3xl"
               >
-                studio@example.com
+                idearigs@gmail.com
               </a>
             </div>
             <div>

@@ -39,13 +39,13 @@ export function SiteFooter() {
               <li><a href="#" className="link-underline">Instagram</a></li>
               <li><a href="#" className="link-underline">Vimeo</a></li>
               <li><a href="#" className="link-underline">LinkedIn</a></li>
-              <li><a href="mailto:studio@example.com" className="link-underline">studio@example.com</a></li>
+              <li><a href="mailto:idearigs@gmail.com" className="link-underline">idearigs@gmail.com</a></li>
             </ul>
           </div>
         </div>
 
         <div className="mt-20 flex flex-col justify-between gap-4 border-t border-border pt-8 text-xs text-muted-foreground md:flex-row">
-          <p>© {new Date().getFullYear()} Aris Moreau / Studio. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} idearigs studio. All rights reserved.</p>
           <p className="tracking-wider">Crafted with intent.</p>
         </div>
       </div>
