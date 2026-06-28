@@ -258,7 +258,7 @@ function ProcessBlock({
   block,
   posterFallback,
 }: {
-  block: import("@/data/projects").MediaBlock;
+  block: MediaBlock;
   posterFallback: { from: string; to: string; label?: string };
 }) {
   if (block.type === "text") {
