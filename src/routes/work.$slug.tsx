@@ -60,7 +60,7 @@ export const Route = createFileRoute("/work/$slug")({
 });
 
 function ProjectDetail() {
-  const { project } = Route.useLoaderData();
+  const { project } = Route.useLoaderData() as { project: Project };
   const { prev, next } = getAdjacentProjects(project.slug);
 
   return (
