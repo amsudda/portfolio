@@ -1,5 +1,5 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { getAdjacentProjects, getProjectBySlug, type MediaBlock } from "@/data/projects";
+import { getAdjacentProjects, getProjectBySlug, type MediaBlock, type Project } from "@/data/projects";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { VideoEmbed } from "@/components/video-embed";
