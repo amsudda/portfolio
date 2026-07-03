@@ -59,6 +59,7 @@ function AdminPage() {
 /* ----------------------------- Login ----------------------------- */
 
 function Login({ onAuth }: { onAuth: () => void }) {
+  const [username, setUsername] = useState("");
   const [pw, setPw] = useState("");
   const [error, setError] = useState(false);
   const [busy, setBusy] = useState(false);
@@ -69,7 +70,7 @@ function Login({ onAuth }: { onAuth: () => void }) {
         onSubmit={async (e) => {
           e.preventDefault();
           setBusy(true);
-          const ok = await apiLogin(pw);
+          const ok = await apiLogin(username, pw);
           setBusy(false);
           if (ok) onAuth();
           else setError(true);
@@ -81,18 +82,30 @@ function Login({ onAuth }: { onAuth: () => void }) {
         </p>
         <h1 className="mt-3 font-display text-4xl tracking-tight">Project manager</h1>
         <input
+          type="text"
+          value={username}
+          autoFocus
+          autoComplete="username"
+          onChange={(e) => {
+            setUsername(e.target.value);
+            setError(false);
+          }}
+          placeholder="Username"
+          className="mt-8 w-full border-b border-border bg-transparent py-3 text-base outline-none focus:border-primary"
+        />
+        <input
           type="password"
           value={pw}
-          autoFocus
+          autoComplete="current-password"
           onChange={(e) => {
             setPw(e.target.value);
             setError(false);
           }}
           placeholder="Password"
-          className="mt-8 w-full border-b border-border bg-transparent py-3 text-base outline-none focus:border-primary"
+          className="mt-4 w-full border-b border-border bg-transparent py-3 text-base outline-none focus:border-primary"
         />
         {error && (
-          <p className="mt-3 text-xs text-destructive">Incorrect password.</p>
+          <p className="mt-3 text-xs text-destructive">Incorrect username or password.</p>
         )}
         <button
           type="submit"
@@ -102,8 +115,10 @@ function Login({ onAuth }: { onAuth: () => void }) {
           {busy ? "Checking…" : "Enter"}
         </button>
         <p className="mt-6 text-xs leading-relaxed text-muted-foreground">
-          Set the password via the <code className="rounded bg-surface px-1">ADMIN_PASSWORD</code>{" "}
-          environment variable on the server.
+          Set credentials via the{" "}
+          <code className="rounded bg-surface px-1">ADMIN_USERNAME</code> and{" "}
+          <code className="rounded bg-surface px-1">ADMIN_PASSWORD</code> environment
+          variables on the server.
         </p>
       </form>
     </div>

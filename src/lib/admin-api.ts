@@ -26,11 +26,11 @@ export async function apiDelete(id: string): Promise<void> {
   if (!r.ok) throw new Error("Delete failed");
 }
 
-export async function apiLogin(password: string): Promise<boolean> {
+export async function apiLogin(username: string, password: string): Promise<boolean> {
   const r = await fetch("/api/auth/login", {
     method: "POST",
     headers: { "content-type": "application/json" },
-    body: JSON.stringify({ password }),
+    body: JSON.stringify({ username, password }),
   });
   return r.ok;
 }

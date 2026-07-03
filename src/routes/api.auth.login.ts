@@ -1,18 +1,20 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { checkPassword, makeSessionCookie } from "@/lib/auth.server";
+import { checkCredentials, makeSessionCookie } from "@/lib/auth.server";
 
 export const Route = createFileRoute("/api/auth/login")({
   server: {
     handlers: {
       POST: async ({ request }) => {
+        let username = "";
         let password = "";
         try {
-          const body = (await request.json()) as { password?: string };
+          const body = (await request.json()) as { username?: string; password?: string };
+          username = body.username ?? "";
           password = body.password ?? "";
         } catch {
           /* ignore malformed body */
         }
-        if (!checkPassword(password)) {
+        if (!checkCredentials(username, password)) {
           return new Response(JSON.stringify({ ok: false }), {
             status: 401,
             headers: { "content-type": "application/json" },

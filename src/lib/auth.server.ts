@@ -1,10 +1,12 @@
 /**
- * Minimal server-side admin auth: a single password (env ADMIN_PASSWORD) is
- * exchanged for a signed, httpOnly session cookie. Server-only.
+ * Minimal server-side admin auth: a username + password (env ADMIN_USERNAME /
+ * ADMIN_PASSWORD) are exchanged for a signed, httpOnly session cookie.
+ * Server-only.
  */
 import crypto from "node:crypto";
 
 const SECRET = process.env.AUTH_SECRET || "dev-insecure-secret-change-me";
+const USERNAME = process.env.ADMIN_USERNAME || "admin";
 const PASSWORD = process.env.ADMIN_PASSWORD || "changeme";
 const COOKIE = "portfolio_admin";
 const MAX_AGE = 60 * 60 * 24 * 7; // 7 days (seconds)
@@ -29,8 +31,12 @@ function verify(signed: string): boolean {
   return Number.isFinite(exp) && Date.now() < exp;
 }
 
-export function checkPassword(pw: string): boolean {
-  return safeEqual(pw, PASSWORD);
+export function checkCredentials(username: string, pw: string): boolean {
+  // Evaluate both comparisons regardless of the first result so the response
+  // time doesn't reveal whether the username alone was correct.
+  const okUser = safeEqual(username, USERNAME);
+  const okPass = safeEqual(pw, PASSWORD);
+  return okUser && okPass;
 }
 
 function cookieString(value: string, maxAge: number): string {
