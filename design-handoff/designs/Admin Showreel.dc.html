@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  body { margin: 0; background: #080908; font-family: "IBM Plex Sans", system-ui, sans-serif; -webkit-font-smoothing: antialiased; color: #fff; }
+  * { box-sizing: border-box; }
+  a { color: oklch(0.78 0.16 148); text-decoration: none; }
+  a:hover { color: oklch(0.86 0.14 148); }
+  h1, h2, h3 { font-family: "Archivo", system-ui, sans-serif; margin: 0; }
+  input, select { font-family: "IBM Plex Sans", system-ui, sans-serif; }
+  input:focus, select:focus { outline: none; border-color: oklch(0.72 0.18 148); }
+  ::placeholder { color: rgba(255,255,255,0.35); }
+</style>
+</helmet>
+
+<div style="display:flex; flex-wrap:wrap; align-items:stretch; min-height:100vh; background:#080908">
+
+  <sc-if value="{{ isMobile }}" hint-placeholder-val="{{ false }}">
+    <div style="position:sticky; top:0; z-index:40; width:100%; display:flex; align-items:center; justify-content:space-between; gap:12px; padding:10px 16px; background:rgba(10,11,10,0.86); backdrop-filter:blur(18px) saturate(160%); -webkit-backdrop-filter:blur(18px) saturate(160%); border-bottom:1px solid rgba(255,255,255,0.1)">
+      <div style="display:flex; align-items:baseline; font-family:'Archivo',sans-serif; font-weight:700; font-size:21px; letter-spacing:-0.015em; line-height:1"><span style="position:relative; display:inline-block">ı<span style="position:absolute; left:50%; top:0.05em; transform:translateX(-50%); width:0.17em; height:0.17em; border-radius:50%; background:oklch(0.72 0.18 148)"></span></span>dearigs<span style="font-weight:500; font-size:0.6em; letter-spacing:0.18em; color:rgba(255,255,255,0.62); margin-left:0.4em">ADMIN</span></div>
+      <button onClick="{{ openMenu }}" aria-label="Open menu" style="width:44px; height:44px; flex:0 0 auto; display:flex; align-items:center; justify-content:center; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.16); color:#fff; cursor:pointer">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16"></path><path d="M4 12h16"></path><path d="M4 17h10"></path></svg>
+        </button>
+    </div>
+  </sc-if>
+  <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+    <div style="position:fixed; inset:0; z-index:80; display:flex; background:rgba(4,5,4,0.6); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px)">
+      <div style="width:min(300px,86%); height:100%; overflow-y:auto; background:#0A0B0A; border-right:1px solid rgba(255,255,255,0.12); padding:12px 16px 24px; display:flex; flex-direction:column; gap:24px">
+        <div style="display:flex; align-items:center; justify-content:space-between; min-height:44px">
+          <div style="display:flex; align-items:baseline; font-family:'Archivo',sans-serif; font-weight:700; font-size:21px; letter-spacing:-0.015em; line-height:1"><span style="position:relative; display:inline-block">ı<span style="position:absolute; left:50%; top:0.05em; transform:translateX(-50%); width:0.17em; height:0.17em; border-radius:50%; background:oklch(0.72 0.18 148)"></span></span>dearigs<span style="font-weight:500; font-size:0.6em; letter-spacing:0.18em; color:rgba(255,255,255,0.62); margin-left:0.4em">ADMIN</span></div>
+          <button onClick="{{ closeMenu }}" aria-label="Close menu" style="width:44px; height:44px; flex:0 0 auto; display:flex; align-items:center; justify-content:center; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.16); color:#fff; cursor:pointer">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>
+        </button>
+        </div>
+        <nav style="display:grid; gap:2px">
+      <div style="font-family:'IBM Plex Mono',monospace; font-size:9.5px; letter-spacing:0.16em; color:rgba(255,255,255,0.35); padding:0 12px 10px">CONTENT</div>
+      <a onClick="{{ closeMenu }}" href="Admin%20Projects.dc.html" style="display:flex; align-items:center; gap:11px; padding:11px 12px; font-size:14.5px; color:rgba(255,255,255,0.6)" style-hover="color:#fff; background:rgba(255,255,255,0.05)">Projects</a>
+      <a onClick="{{ closeMenu }}" href="Admin%20Gallery.dc.html" style="display:flex; align-items:center; gap:11px; padding:11px 12px; font-size:14.5px; color:rgba(255,255,255,0.6)" style-hover="color:#fff; background:rgba(255,255,255,0.05)">Studio gallery</a>
+      <span style="display:flex; align-items:center; gap:11px; padding:11px 12px; font-size:14.5px; background:rgba(255,255,255,0.08); border-left:2px solid oklch(0.72 0.18 148); color:#fff">Showreel clips</span>
+      <a onClick="{{ closeMenu }}" href="Admin%20Clients.dc.html" style="display:flex; align-items:center; gap:11px; padding:11px 12px; font-size:14.5px; color:rgba(255,255,255,0.6)" style-hover="color:#fff; background:rgba(255,255,255,0.05)">Clients</a>
+      <div style="font-family:'IBM Plex Mono',monospace; font-size:9.5px; letter-spacing:0.16em; color:rgba(255,255,255,0.35); padding:18px 12px 10px">PERFORMANCE</div>
+      <a onClick="{{ closeMenu }}" href="Admin%20Meta%20Ads.dc.html" style="display:flex; align-items:center; gap:11px; padding:11px 12px; font-size:14.5px; color:rgba(255,255,255,0.6)" style-hover="color:#fff; background:rgba(255,255,255,0.05)">Meta ads data</a>
+      <div style="font-family:'IBM Plex Mono',monospace; font-size:9.5px; letter-spacing:0.16em; color:rgba(255,255,255,0.35); padding:18px 12px 10px">ACCOUNT</div>
+      <a onClick="{{ closeMenu }}" href="Agency%20Landing%20Page.dc.html" style="display:flex; align-items:center; gap:11px; padding:11px 12px; font-size:14.5px; color:rgba(255,255,255,0.6)" style-hover="color:#fff; background:rgba(255,255,255,0.05)">View live site</a>
+    </nav>
+      </div>
+      <button onClick="{{ closeMenu }}" aria-label="Close menu" style="flex:1; background:none; border:none; cursor:pointer"></button>
+    </div>
+  </sc-if>
+  <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
+    <aside style="width:248px; flex:0 0 auto; border-right:1px solid rgba(255,255,255,0.1); padding:22px 18px; display:flex; flex-direction:column; gap:28px; background:#0A0B0A">
+    <div style="display:flex; align-items:baseline; font-family:'Archivo',sans-serif; font-weight:700; font-size:21px; letter-spacing:-0.015em; line-height:1"><span style="position:relative; display:inline-block">ı<span style="position:absolute; left:50%; top:0.05em; transform:translateX(-50%); width:0.17em; height:0.17em; border-radius:50%; background:oklch(0.72 0.18 148)"></span></span>dearigs<span style="font-weight:500; font-size:0.6em; letter-spacing:0.18em; color:rgba(255,255,255,0.62); margin-left:0.4em">ADMIN</span></div>
+    <nav style="display:grid; gap:2px">
+      <div style="font-family:'IBM Plex Mono',monospace; font-size:9.5px; letter-spacing:0.16em; color:rgba(255,255,255,0.35); padding:0 12px 10px">CONTENT</div>
+      <a href="Admin%20Projects.dc.html" style="display:flex; align-items:center; gap:11px; padding:11px 12px; font-size:14.5px; color:rgba(255,255,255,0.6)" style-hover="color:#fff; background:rgba(255,255,255,0.05)">Projects</a>
+      <a href="Admin%20Gallery.dc.html" style="display:flex; align-items:center; gap:11px; padding:11px 12px; font-size:14.5px; color:rgba(255,255,255,0.6)" style-hover="color:#fff; background:rgba(255,255,255,0.05)">Studio gallery</a>
+      <span style="display:flex; align-items:center; gap:11px; padding:11px 12px; font-size:14.5px; background:rgba(255,255,255,0.08); border-left:2px solid oklch(0.72 0.18 148); color:#fff">Showreel clips</span>
+      <a href="Admin%20Clients.dc.html" style="display:flex; align-items:center; gap:11px; padding:11px 12px; font-size:14.5px; color:rgba(255,255,255,0.6)" style-hover="color:#fff; background:rgba(255,255,255,0.05)">Clients</a>
+      <div style="font-family:'IBM Plex Mono',monospace; font-size:9.5px; letter-spacing:0.16em; color:rgba(255,255,255,0.35); padding:18px 12px 10px">PERFORMANCE</div>
+      <a href="Admin%20Meta%20Ads.dc.html" style="display:flex; align-items:center; gap:11px; padding:11px 12px; font-size:14.5px; color:rgba(255,255,255,0.6)" style-hover="color:#fff; background:rgba(255,255,255,0.05)">Meta ads data</a>
+      <div style="font-family:'IBM Plex Mono',monospace; font-size:9.5px; letter-spacing:0.16em; color:rgba(255,255,255,0.35); padding:18px 12px 10px">ACCOUNT</div>
+      <a href="Agency%20Landing%20Page.dc.html" style="display:flex; align-items:center; gap:11px; padding:11px 12px; font-size:14.5px; color:rgba(255,255,255,0.6)" style-hover="color:#fff; background:rgba(255,255,255,0.05)">View live site</a>
+    </nav>
+    <div style="margin-top:auto; border-top:1px solid rgba(255,255,255,0.1); padding-top:16px; display:flex; align-items:center; gap:11px">
+      <div style="width:34px; height:34px; border-radius:50%; background:repeating-linear-gradient(135deg,#1E201E 0 6px,#171817 6px 12px); flex:0 0 auto"></div>
+      <div>
+        <div style="font-size:13.5px; font-family:'Archivo',sans-serif; font-weight:600">Kavinda W.</div>
+        <div style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:rgba(255,255,255,0.45); letter-spacing:0.08em">STUDIO DIRECTOR</div>
+      </div>
+    </div>
+  </aside>
+  </sc-if>
+
+  <main style="flex:1 1 460px; min-width:0; position:relative; overflow:hidden">
+    <div style="position:absolute; inset:0; pointer-events:none; background:radial-gradient(700px 460px at 88% -6%, oklch(0.72 0.18 148 / 0.16), transparent 68%), repeating-linear-gradient(135deg, rgba(255,255,255,0.02) 0 14px, transparent 14px 28px)"></div>
+
+    <div style="position:relative; padding:clamp(20px,3vw,36px)">
+      <div style="display:flex; flex-wrap:wrap; gap:16px; align-items:flex-end; justify-content:space-between">
+        <div>
+          <div style="font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:0.14em; color:rgba(255,255,255,0.45)">CONTENT / SHOWREEL CLIPS</div>
+          <h1 style="font-size:clamp(24px,2.6vw,34px); letter-spacing:-0.025em; font-weight:700; margin-top:12px">Showreel</h1>
+          <p style="font-size:14.5px; line-height:1.6; color:rgba(255,255,255,0.55); margin:10px 0 0; max-width:54ch">The hero loop and the four clips in the home page reel. Order here is the order visitors see.</p>
+        </div>
+        <button onClick="{{ onNew }}" style="background:oklch(0.72 0.18 148); color:#07210F; border:none; font-family:'Archivo',sans-serif; font-weight:600; font-size:14.5px; padding:13px 20px; cursor:pointer; display:flex; align-items:center; gap:9px" style-hover="background:oklch(0.82 0.19 148)">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"></path><path d="M5 12h14"></path></svg>
+          Add clip
+        </button>
+      </div>
+
+      <div style="border:1px solid rgba(255,255,255,0.14); background:rgba(255,255,255,0.05); backdrop-filter:blur(22px) saturate(160%); -webkit-backdrop-filter:blur(22px) saturate(160%); box-shadow:inset 0 1px 0 rgba(255,255,255,0.18); border-radius:16px; padding:clamp(18px,2.4vw,26px); margin-top:clamp(22px,3vw,32px); display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:20px; align-items:center">
+        <div>
+          <div style="font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:0.12em; color:oklch(0.78 0.16 148)">HERO BACKGROUND LOOP</div>
+          <h2 style="font-size:19px; font-weight:600; margin-top:10px">Plays muted behind the hero</h2>
+          <p style="font-size:13.5px; line-height:1.6; color:rgba(255,255,255,0.55); margin:8px 0 0">21:9, no audio, under 12 seconds. Keep it under 6MB so mobile loads fast.</p>
+        </div>
+        <div style="display:grid; gap:10px">
+          <label style="display:grid; gap:7px">
+            <span style="font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:0.1em; color:rgba(255,255,255,0.5)">FILE PATH</span>
+            <input value="{{ heroFile }}" onChange="{{ onHeroFile }}" style="border:1px solid rgba(255,255,255,0.18); background:rgba(255,255,255,0.04); padding:12px 14px; font-size:14.5px; color:#fff; font-family:'IBM Plex Mono',monospace" />
+          </label>
+          <div style="aspect-ratio:21/9; border:1px dashed rgba(255,255,255,0.24); background:repeating-linear-gradient(135deg,#151615 0 8px,#111211 8px 16px); display:flex; align-items:center; justify-content:center; font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:0.08em; color:rgba(255,255,255,0.45); cursor:pointer">CLICK OR DROP TO REPLACE LOOP</div>
+        </div>
+      </div>
+
+      <div style="display:flex; align-items:baseline; justify-content:space-between; gap:16px; margin-top:clamp(24px,3vw,34px)">
+        <h2 style="font-size:18px; font-weight:600">Reel clips</h2>
+        <span style="font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:0.1em; color:rgba(255,255,255,0.45)">{{ count }} CLIPS · {{ publishedCount }} LIVE</span>
+      </div>
+
+      <div style="margin-top:14px; display:grid; gap:12px">
+        <sc-for list="{{ clips }}" as="c" hint-placeholder-count="4">
+          <div style="border:1px solid rgba(255,255,255,0.14); background:rgba(255,255,255,0.04); backdrop-filter:blur(18px); -webkit-backdrop-filter:blur(18px); border-radius:14px; padding:14px; display:flex; flex-wrap:wrap; gap:16px; align-items:center">
+            <div style="width:132px; aspect-ratio:16/9; flex:0 0 auto; position:relative; background:repeating-linear-gradient(135deg,#1C1D1C 0 8px,#151615 8px 16px); border:1px solid rgba(255,255,255,0.1)">
+              <span style="position:absolute; right:6px; bottom:6px; font-family:'IBM Plex Mono',monospace; font-size:9.5px; padding:3px 6px; background:rgba(8,9,8,0.75); color:rgba(255,255,255,0.75)">{{ c.duration }}</span>
+            </div>
+            <div style="flex:1 1 200px; min-width:0">
+              <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap">
+                <span style="font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:0.1em; color:rgba(255,255,255,0.4)">#{{ c.position }}</span>
+                <span style="font-family:'Archivo',sans-serif; font-weight:600; font-size:16px">{{ c.title }}</span>
+                <span style="font-family:'IBM Plex Mono',monospace; font-size:9.5px; letter-spacing:0.1em; padding:4px 8px; background:{{ c.badgeBg }}; color:{{ c.badgeText }}">{{ c.status }}</span>
+              </div>
+              <div style="font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:0.06em; color:rgba(255,255,255,0.45); margin-top:7px">{{ c.client }} · {{ c.file }}</div>
+            </div>
+            <div style="display:flex; gap:8px; flex-wrap:wrap">
+              <button onClick="{{ c.onUp }}" aria-label="Move up" style="background:none; border:1px solid rgba(255,255,255,0.2); color:#fff; width:38px; height:38px; display:flex; align-items:center; justify-content:center; cursor:pointer" style-hover="background:rgba(255,255,255,0.12)">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"></path></svg>
+              </button>
+              <button onClick="{{ c.onDown }}" aria-label="Move down" style="background:none; border:1px solid rgba(255,255,255,0.2); color:#fff; width:38px; height:38px; display:flex; align-items:center; justify-content:center; cursor:pointer" style-hover="background:rgba(255,255,255,0.12)">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg>
+              </button>
+              <button onClick="{{ c.onToggle }}" style="background:none; border:1px solid rgba(255,255,255,0.2); color:#fff; font-family:'Archivo',sans-serif; font-weight:600; font-size:13px; padding:9px 14px; cursor:pointer" style-hover="background:rgba(255,255,255,0.12)">{{ c.toggleLabel }}</button>
+              <button onClick="{{ c.onEdit }}" style="background:none; border:1px solid rgba(255,255,255,0.2); color:#fff; font-family:'Archivo',sans-serif; font-weight:600; font-size:13px; padding:9px 14px; cursor:pointer" style-hover="background:rgba(255,255,255,0.12)">Edit</button>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+
+    <sc-if value="{{ editing }}" hint-placeholder-val="{{ false }}">
+      <div style="position:fixed; inset:0; z-index:60; display:flex; justify-content:flex-end; background:rgba(4,5,4,0.6); backdrop-filter:blur(4px)">
+        <div style="width:min(520px,100%); height:100%; overflow-y:auto; background:#0B0C0B; border-left:1px solid rgba(255,255,255,0.14); padding:clamp(20px,3vw,32px)">
+          <div style="display:flex; align-items:flex-start; justify-content:space-between; gap:16px">
+            <div>
+              <div style="font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:0.14em; color:oklch(0.78 0.16 148)">{{ panelLabel }}</div>
+              <h2 style="font-size:clamp(20px,2.2vw,26px); letter-spacing:-0.02em; font-weight:700; margin-top:10px">{{ panelTitle }}</h2>
+            </div>
+            <button onClick="{{ onClose }}" aria-label="Close" style="background:none; border:1px solid rgba(255,255,255,0.2); color:#fff; width:38px; height:38px; display:flex; align-items:center; justify-content:center; cursor:pointer" style-hover="background:rgba(255,255,255,0.12)">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>
+            </button>
+          </div>
+
+          <div style="aspect-ratio:16/9; border:1px dashed rgba(255,255,255,0.24); background:repeating-linear-gradient(135deg,#151615 0 8px,#111211 8px 16px); display:flex; align-items:center; justify-content:center; margin-top:24px; font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:0.08em; color:rgba(255,255,255,0.45); cursor:pointer">CLICK OR DROP MP4 · UP TO 200MB</div>
+
+          <div style="display:grid; gap:16px; margin-top:20px">
+            <label style="display:grid; gap:7px">
+              <span style="font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:0.1em; color:rgba(255,255,255,0.5)">CLIP TITLE</span>
+              <input value="{{ form.title }}" onChange="{{ onTitle }}" placeholder="e.g. Pour sequence" style="border:1px solid rgba(255,255,255,0.18); background:rgba(255,255,255,0.04); padding:12px 14px; font-size:15px; color:#fff" />
+            </label>
+            <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:14px">
+              <label style="display:grid; gap:7px">
+                <span style="font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:0.1em; color:rgba(255,255,255,0.5)">CLIENT</span>
+                <input value="{{ form.client }}" onChange="{{ onClient }}" placeholder="Client name" style="border:1px solid rgba(255,255,255,0.18); background:rgba(255,255,255,0.04); padding:12px 14px; font-size:15px; color:#fff" />
+              </label>
+              <label style="display:grid; gap:7px">
+                <span style="font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:0.1em; color:rgba(255,255,255,0.5)">DURATION</span>
+                <input value="{{ form.duration }}" onChange="{{ onDuration }}" placeholder="0:48" style="border:1px solid rgba(255,255,255,0.18); background:rgba(255,255,255,0.04); padding:12px 14px; font-size:15px; color:#fff; font-family:'IBM Plex Mono',monospace" />
+              </label>
+              <label style="display:grid; gap:7px">
+                <span style="font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:0.1em; color:rgba(255,255,255,0.5)">CATEGORY</span>
+                <select value="{{ form.category }}" onChange="{{ onCategory }}" style="border:1px solid rgba(255,255,255,0.18); background:rgba(255,255,255,0.04); padding:12px 14px; font-size:15px; color:#fff">
+                  <option>Tabletop</option>
+                  <option>Brand film</option>
+                  <option>Property</option>
+                  <option>Hospitality</option>
+                  <option>Social cut</option>
+                </select>
+              </label>
+            </div>
+            <label style="display:grid; gap:7px">
+              <span style="font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:0.1em; color:rgba(255,255,255,0.5)">FILE PATH</span>
+              <input value="{{ form.file }}" onChange="{{ onFile }}" placeholder="media/reel-ceylon.mp4" style="border:1px solid rgba(255,255,255,0.18); background:rgba(255,255,255,0.04); padding:12px 14px; font-size:14.5px; color:#fff; font-family:'IBM Plex Mono',monospace" />
+            </label>
+            <div style="display:grid; gap:10px; border-top:1px solid rgba(255,255,255,0.12); padding-top:18px">
+              <span style="font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:0.1em; color:rgba(255,255,255,0.5)">STATUS</span>
+              <div style="display:flex; gap:8px">
+                <button onClick="{{ setDraft }}" style="flex:1; background:{{ draftSel }}; color:#fff; border:1px solid rgba(255,255,255,0.18); font-family:'Archivo',sans-serif; font-weight:600; font-size:14px; padding:12px; cursor:pointer">Hidden</button>
+                <button onClick="{{ setPublished }}" style="flex:1; background:{{ pubSel }}; color:{{ pubSelText }}; border:1px solid rgba(255,255,255,0.18); font-family:'Archivo',sans-serif; font-weight:600; font-size:14px; padding:12px; cursor:pointer">Live</button>
+              </div>
+            </div>
+            <div style="display:flex; flex-wrap:wrap; gap:10px; border-top:1px solid rgba(255,255,255,0.12); padding-top:18px">
+              <button onClick="{{ onSave }}" style="background:oklch(0.72 0.18 148); color:#07210F; border:none; font-family:'Archivo',sans-serif; font-weight:600; font-size:15px; padding:14px 24px; cursor:pointer" style-hover="background:oklch(0.82 0.19 148)">Save clip</button>
+              <button onClick="{{ onClose }}" style="background:none; border:1px solid rgba(255,255,255,0.2); color:#fff; font-family:'Archivo',sans-serif; font-weight:600; font-size:15px; padding:14px 24px; cursor:pointer" style-hover="background:rgba(255,255,255,0.12)">Cancel</button>
+              <sc-if value="{{ canDelete }}" hint-placeholder-val="{{ false }}">
+                <button onClick="{{ onDelete }}" style="margin-left:auto; background:none; border:1px solid rgba(255,255,255,0.2); color:rgba(255,255,255,0.7); font-size:14px; padding:14px 18px; cursor:pointer" style-hover="border-color:#fff; color:#fff">Delete</button>
+              </sc-if>
+            </div>
+          </div>
+        </div>
+      </div>
+    </sc-if>
+  </main>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280,&quot;height&quot;:900}}">
+class Component extends DCLogic {
+  _mqInit() {
+    if (this._mq || typeof window === "undefined" || !window.matchMedia) return;
+    this._mq = window.matchMedia("(max-width: 760px)");
+    this._mqh = () => this.setState({ isMobile: this._mq.matches, menuOpen: this._mq.matches ? !!(this.state && this.state.menuOpen) : false });
+    if (this._mq.addEventListener) this._mq.addEventListener("change", this._mqh); else this._mq.addListener(this._mqh);
+    this._mqh();
+  }
+  mobileVals() {
+    const st = this.state || {};
+    const m = st.isMobile !== undefined ? st.isMobile : (typeof window !== "undefined" && window.innerWidth <= 760);
+    return { isMobile: m, isDesktop: !m, menuOpen: !!st.menuOpen, openMenu: () => this.setState({ menuOpen: true }), closeMenu: () => this.setState({ menuOpen: false }) };
+  }
+
+  state = {
+    heroFile: "media/hero-loop.mp4",
+    editing: false,
+    editIdx: null,
+    form: null,
+    items: [
+      { title: "Pour sequence", client: "Ceylon Leaf Tea Co.", duration: "0:48", category: "Tabletop", file: "media/reel-ceylon.mp4", status: "Live" },
+      { title: "Hiking season spot", client: "Nuwara Outdoor Gear", duration: "1:12", category: "Brand film", file: "media/reel-nuwara.mp4", status: "Live" },
+      { title: "Show unit walkthrough", client: "Marino Beach Residences", duration: "0:36", category: "Property", file: "media/reel-marino.mp4", status: "Live" },
+      { title: "Treatment film", client: "Sahana Ayurveda Spa", duration: "0:54", category: "Hospitality", file: "media/reel-sahana.mp4", status: "Hidden" }
+    ]
+  };
+
+  blank() { return { title: "", client: "", duration: "", category: "Social cut", file: "", status: "Hidden" }; }
+  open(idx) { const c = idx === null ? this.blank() : this.state.items[idx]; this.setState({ editing: true, editIdx: idx, form: Object.assign({}, c) }); }
+  patch(next) { this.setState(s => ({ form: Object.assign({}, s.form, next) })); }
+  move(i, dir) {
+    this.setState(s => {
+      const list = s.items.slice();
+      const j = i + dir;
+      if (j < 0 || j >= list.length) return {};
+      const tmp = list[i]; list[i] = list[j]; list[j] = tmp;
+      return { items: list };
+    });
+  }
+  toggle(i) { this.setState(s => { const list = s.items.slice(); list[i] = Object.assign({}, list[i], { status: list[i].status === "Live" ? "Hidden" : "Live" }); return { items: list }; }); }
+  save() { this.setState(s => { const list = s.items.slice(); if (s.editIdx === null) list.push(s.form); else list[s.editIdx] = s.form; return { items: list, editing: false, editIdx: null, form: null }; }); }
+  remove() { this.setState(s => { const list = s.items.slice(); if (s.editIdx !== null) list.splice(s.editIdx, 1); return { items: list, editing: false, editIdx: null, form: null }; }); }
+
+  componentDidMount() { this._mqInit(); }
+  renderVals() {
+    const s = this.state;
+    const sel = "rgba(255,255,255,0.16)";
+    const off = "rgba(255,255,255,0.04)";
+    const clips = s.items.map((c, i) => ({
+      position: i + 1,
+      title: c.title || "Untitled clip",
+      client: c.client || "Unassigned",
+      duration: c.duration || "—:—",
+      file: c.file || "no file",
+      status: c.status.toUpperCase(),
+      badgeBg: c.status === "Live" ? "oklch(0.72 0.18 148)" : "rgba(255,255,255,0.08)",
+      badgeText: c.status === "Live" ? "#07210F" : "rgba(255,255,255,0.7)",
+      toggleLabel: c.status === "Live" ? "Hide" : "Go live",
+      onUp: () => this.move(i, -1),
+      onDown: () => this.move(i, 1),
+      onToggle: () => this.toggle(i),
+      onEdit: () => this.open(i)
+    }));
+    const f = s.form || this.blank();
+    return {
+      ...this.mobileVals(),
+      clips: clips,
+      count: s.items.length,
+      publishedCount: s.items.filter(c => c.status === "Live").length,
+      heroFile: s.heroFile,
+      onHeroFile: e => this.setState({ heroFile: e.target.value }),
+      editing: s.editing,
+      canDelete: s.editIdx !== null,
+      panelLabel: s.editIdx === null ? "NEW CLIP" : "EDITING CLIP",
+      panelTitle: s.editIdx === null ? "Add a reel clip" : (f.title || "Clip"),
+      form: f,
+      onNew: () => this.open(null),
+      onClose: () => this.setState({ editing: false, editIdx: null, form: null }),
+      onSave: () => this.save(),
+      onDelete: () => this.remove(),
+      onTitle: e => this.patch({ title: e.target.value }),
+      onClient: e => this.patch({ client: e.target.value }),
+      onDuration: e => this.patch({ duration: e.target.value }),
+      onCategory: e => this.patch({ category: e.target.value }),
+      onFile: e => this.patch({ file: e.target.value }),
+      setDraft: () => this.patch({ status: "Hidden" }),
+      setPublished: () => this.patch({ status: "Live" }),
+      draftSel: f.status !== "Live" ? sel : off,
+      pubSel: f.status === "Live" ? "oklch(0.72 0.18 148)" : off,
+      pubSelText: f.status === "Live" ? "#07210F" : "#fff"
+    };
+  }
+}
+</script>
+</body>
+</html>

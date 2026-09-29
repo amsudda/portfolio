@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: #FAFAF8; font-family: "IBM Plex Sans", system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  * { box-sizing: border-box; }
+  a { color: oklch(0.48 0.13 150); text-decoration: none; }
+  a:hover { color: oklch(0.62 0.17 148); }
+  h1, h2, h3, h4 { font-family: "Archivo", system-ui, sans-serif; margin: 0; text-wrap: balance; }
+  p { text-wrap: pretty; }
+</style>
+</helmet>
+
+<div style="background:#FAFAF8; color:#0A0B0A; overflow-x:hidden">
+
+  <header style="position:sticky; top:0; z-index:50; background:rgba(10,11,10,0.94); backdrop-filter:blur(10px); border-bottom:1px solid rgba(255,255,255,0.1)">
+    <div style="max-width:1240px; margin:0 auto; padding:12px clamp(20px,5vw,72px); min-height:68px; display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:14px 24px">
+      <a href="Agency%20Landing%20Page.dc.html" style="display:flex; align-items:baseline; color:#fff; font-family:'Archivo',sans-serif; font-weight:700; font-size:23px; letter-spacing:-0.015em; line-height:1"><span style="position:relative; display:inline-block">ı<span style="position:absolute; left:50%; top:0.05em; transform:translateX(-50%); width:0.17em; height:0.17em; border-radius:50%; background:oklch(0.72 0.18 148)"></span></span>dearigs<span style="font-weight:500; font-size:0.6em; letter-spacing:0.18em; color:rgba(255,255,255,0.62); margin-left:0.4em">STUDIOS</span></a>
+      <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
+      <nav style="display:flex; flex-wrap:wrap; align-items:center; gap:clamp(14px,2.4vw,30px)">
+        <a href="Agency%20Landing%20Page.dc.html#partnership" style="color:rgba(255,255,255,0.72); font-size:14px" style-hover="color:#fff">Partnership</a>
+        <a href="Agency%20Landing%20Page.dc.html#ads" style="color:rgba(255,255,255,0.72); font-size:14px" style-hover="color:#fff">Performance</a>
+        <a href="Portfolio%20Gallery.dc.html" style="color:rgba(255,255,255,0.72); font-size:14px" style-hover="color:#fff">Gallery</a>
+        <a href="Contact.dc.html" style="background:oklch(0.72 0.18 148); color:#07210F; font-family:'Archivo',sans-serif; font-weight:600; font-size:14px; padding:10px 18px" style-hover="background:oklch(0.8 0.19 148); color:#07210F">Book a call</a>
+      </nav>
+      </sc-if>
+      <sc-if value="{{ isMobile }}" hint-placeholder-val="{{ false }}">
+        <button onClick="{{ openMenu }}" aria-label="Open menu" style="width:44px; height:44px; flex:0 0 auto; display:flex; align-items:center; justify-content:center; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.16); color:#fff; cursor:pointer">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16"></path><path d="M4 12h16"></path><path d="M4 17h10"></path></svg>
+        </button>
+      </sc-if>
+    </div>
+  </header>
+  <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+    <div style="position:fixed; inset:0; z-index:80; background:rgba(8,9,8,0.78); backdrop-filter:blur(24px) saturate(160%); -webkit-backdrop-filter:blur(24px) saturate(160%); display:flex; flex-direction:column; padding:12px 20px 28px; color:#fff; overflow-y:auto">
+      <div style="display:flex; align-items:center; justify-content:space-between; min-height:44px">
+        <a href="Agency%20Landing%20Page.dc.html" style="display:flex; align-items:baseline; color:#fff; font-family:'Archivo',sans-serif; font-weight:700; font-size:21px; letter-spacing:-0.015em; line-height:1"><span style="position:relative; display:inline-block">ı<span style="position:absolute; left:50%; top:0.05em; transform:translateX(-50%); width:0.17em; height:0.17em; border-radius:50%; background:oklch(0.72 0.18 148)"></span></span>dearigs<span style="font-weight:500; font-size:0.6em; letter-spacing:0.18em; color:rgba(255,255,255,0.62); margin-left:0.4em">STUDIOS</span></a>
+        <button onClick="{{ closeMenu }}" aria-label="Close menu" style="width:44px; height:44px; flex:0 0 auto; display:flex; align-items:center; justify-content:center; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.16); color:#fff; cursor:pointer">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>
+        </button>
+      </div>
+      <nav style="display:grid; margin-top:28px; border-top:1px solid rgba(255,255,255,0.12)">
+        <a href="Agency%20Landing%20Page.dc.html" onClick="{{ closeMenu }}" style="display:flex; justify-content:space-between; align-items:center; min-height:60px; padding:0 2px; border-bottom:1px solid rgba(255,255,255,0.12); font-family:'Archivo',sans-serif; font-weight:600; font-size:24px; letter-spacing:-0.02em; color:#fff">Home<span style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.1em; color:rgba(255,255,255,0.4)">01</span></a>
+        <a href="Agency%20Landing%20Page.dc.html#partnership" onClick="{{ closeMenu }}" style="display:flex; justify-content:space-between; align-items:center; min-height:60px; padding:0 2px; border-bottom:1px solid rgba(255,255,255,0.12); font-family:'Archivo',sans-serif; font-weight:600; font-size:24px; letter-spacing:-0.02em; color:#fff">Partnership<span style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.1em; color:rgba(255,255,255,0.4)">02</span></a>
+        <a href="Agency%20Landing%20Page.dc.html#reel" onClick="{{ closeMenu }}" style="display:flex; justify-content:space-between; align-items:center; min-height:60px; padding:0 2px; border-bottom:1px solid rgba(255,255,255,0.12); font-family:'Archivo',sans-serif; font-weight:600; font-size:24px; letter-spacing:-0.02em; color:#fff">Showreel<span style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.1em; color:rgba(255,255,255,0.4)">03</span></a>
+        <a href="Agency%20Landing%20Page.dc.html#ads" onClick="{{ closeMenu }}" style="display:flex; justify-content:space-between; align-items:center; min-height:60px; padding:0 2px; border-bottom:1px solid rgba(255,255,255,0.12); font-family:'Archivo',sans-serif; font-weight:600; font-size:24px; letter-spacing:-0.02em; color:#fff">Performance<span style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.1em; color:rgba(255,255,255,0.4)">04</span></a>
+        <a href="Portfolio%20Gallery.dc.html" onClick="{{ closeMenu }}" style="display:flex; justify-content:space-between; align-items:center; min-height:60px; padding:0 2px; border-bottom:1px solid rgba(255,255,255,0.12); font-family:'Archivo',sans-serif; font-weight:600; font-size:24px; letter-spacing:-0.02em; color:#fff">Portfolio<span style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.1em; color:rgba(255,255,255,0.4)">05</span></a>
+        <a href="Project%20Details.dc.html" onClick="{{ closeMenu }}" style="display:flex; justify-content:space-between; align-items:center; min-height:60px; padding:0 2px; border-bottom:1px solid rgba(255,255,255,0.12); font-family:'Archivo',sans-serif; font-weight:600; font-size:24px; letter-spacing:-0.02em; color:oklch(0.78 0.16 148)">Project details<span style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.1em; color:rgba(255,255,255,0.4)">06</span></a>
+        <a href="Contact.dc.html" onClick="{{ closeMenu }}" style="display:flex; justify-content:space-between; align-items:center; min-height:60px; padding:0 2px; border-bottom:1px solid rgba(255,255,255,0.12); font-family:'Archivo',sans-serif; font-weight:600; font-size:24px; letter-spacing:-0.02em; color:#fff">Contact<span style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.1em; color:rgba(255,255,255,0.4)">07</span></a>
+      </nav>
+      <div style="margin-top:auto; padding-top:32px; display:grid; gap:14px">
+        <a href="Contact.dc.html" onClick="{{ closeMenu }}" style="display:flex; align-items:center; justify-content:center; gap:10px; min-height:54px; background:oklch(0.72 0.18 148); color:#07210F; font-family:'Archivo',sans-serif; font-weight:600; font-size:16px">Book a strategy call</a>
+        <div style="display:flex; flex-wrap:wrap; justify-content:space-between; gap:8px; font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.06em; color:rgba(255,255,255,0.55)"><span>hello@idearigs.lk</span><span>+94 11 234 5678</span></div>
+      </div>
+    </div>
+  </sc-if>
+
+  <section style="background:#0A0B0A; color:#fff; padding:clamp(40px,5vw,72px) clamp(20px,5vw,72px) 0">
+    <div style="max-width:1240px; margin:0 auto">
+      <div style="font-family:'IBM Plex Mono',monospace; font-size:11.5px; letter-spacing:0.14em; color:rgba(255,255,255,0.5)">
+        <a href="Portfolio%20Gallery.dc.html" style="color:rgba(255,255,255,0.5)" style-hover="color:oklch(0.78 0.16 148)">WORK</a> / CASE STUDY 01
+      </div>
+      <h1 style="font-size:clamp(34px,4.8vw,62px); line-height:1.04; letter-spacing:-0.03em; font-weight:700; margin-top:22px; max-width:20ch">Twelve months of always-on content for a heritage tea exporter.</h1>
+      <p style="font-size:clamp(16px,1.2vw,18px); line-height:1.65; color:rgba(255,255,255,0.68); margin:22px 0 0; max-width:52ch">Ceylon Leaf Tea Co. had thirty years of export credibility and almost no presence in the local retail market. We took over content, media buying and production for a full twelve-month cycle.</p>
+
+      <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:1px; background:rgba(255,255,255,0.14); border:1px solid rgba(255,255,255,0.14); margin-top:clamp(36px,4vw,56px)">
+        <div style="background:#0A0B0A; padding:20px 22px">
+          <div style="font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:0.12em; color:rgba(255,255,255,0.45)">CLIENT</div>
+          <div style="font-size:15.5px; margin-top:10px">Ceylon Leaf Tea Co.</div>
+        </div>
+        <div style="background:#0A0B0A; padding:20px 22px">
+          <div style="font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:0.12em; color:rgba(255,255,255,0.45)">SECTOR</div>
+          <div style="font-size:15.5px; margin-top:10px">FMCG · Export &amp; retail</div>
+        </div>
+        <div style="background:#0A0B0A; padding:20px 22px">
+          <div style="font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:0.12em; color:rgba(255,255,255,0.45)">ENGAGEMENT</div>
+          <div style="font-size:15.5px; margin-top:10px">Sep 2025 — Aug 2026</div>
+        </div>
+        <div style="background:#0A0B0A; padding:20px 22px">
+          <div style="font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:0.12em; color:rgba(255,255,255,0.45)">SCOPE</div>
+          <div style="font-size:15.5px; margin-top:10px">Social, Meta ads, studio</div>
+        </div>
+      </div>
+      <div style="height:clamp(36px,4vw,56px)"></div>
+    </div>
+  </section>
+
+  <section style="padding:0 clamp(20px,5vw,72px); background:linear-gradient(#0A0B0A 50%, #FAFAF8 50%)">
+    <div style="max-width:1240px; margin:0 auto">
+      <div style="aspect-ratio:16/9; background:repeating-linear-gradient(135deg,#EFEFEC 0 10px,#E4E5E0 10px 20px); border:1px solid #E3E4E0; display:flex; align-items:flex-end; padding:18px">
+        <span style="font-family:'IBM Plex Mono',monospace; font-size:11px; color:#6E736E; letter-spacing:0.08em">HERO IMAGE — 16:9 · KEY CAMPAIGN VISUAL</span>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:clamp(48px,6vw,88px) clamp(20px,5vw,72px)">
+    <div style="max-width:1240px; margin:0 auto">
+      <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:1px; background:#E3E4E0; border:1px solid #E3E4E0">
+        <div style="background:#fff; padding:24px">
+          <div style="font-family:'Archivo',sans-serif; font-size:clamp(28px,3vw,38px); font-weight:700; letter-spacing:-0.025em; color:oklch(0.42 0.12 150)">+312%</div>
+          <div style="font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:0.1em; color:#8A8F8A; margin-top:8px">ENGAGEMENT RATE</div>
+        </div>
+        <div style="background:#fff; padding:24px">
+          <div style="font-family:'Archivo',sans-serif; font-size:clamp(28px,3vw,38px); font-weight:700; letter-spacing:-0.025em; color:oklch(0.42 0.12 150)">6.1x</div>
+          <div style="font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:0.1em; color:#8A8F8A; margin-top:8px">ROAS, PAID SOCIAL</div>
+        </div>
+        <div style="background:#fff; padding:24px">
+          <div style="font-family:'Archivo',sans-serif; font-size:clamp(28px,3vw,38px); font-weight:700; letter-spacing:-0.025em; color:oklch(0.42 0.12 150)">48.2K</div>
+          <div style="font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:0.1em; color:#8A8F8A; margin-top:8px">FOLLOWERS ADDED</div>
+        </div>
+        <div style="background:#fff; padding:24px">
+          <div style="font-family:'Archivo',sans-serif; font-size:clamp(28px,3vw,38px); font-weight:700; letter-spacing:-0.025em; color:oklch(0.42 0.12 150)">LKR 9.80</div>
+          <div style="font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:0.1em; color:#8A8F8A; margin-top:8px">AVERAGE CPC</div>
+        </div>
+      </div>
+
+      <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:clamp(28px,4vw,56px); margin-top:clamp(44px,5vw,72px)">
+        <div>
+          <h2 style="font-size:clamp(22px,2.2vw,30px); line-height:1.15; letter-spacing:-0.02em; font-weight:700">The problem</h2>
+          <p style="font-size:16px; line-height:1.7; color:#4C514C; margin:16px 0 0">Retail buyers in Colombo knew the name but not the product range. Organic posting was inconsistent, the page had no content system, and paid campaigns were boosting posts rather than selling packs. Product photography was five years old and inconsistent between SKUs.</p>
+          <p style="font-size:16px; line-height:1.7; color:#4C514C; margin:14px 0 0">The brief was straightforward: build a repeatable content engine and make the ad account pay for itself within two quarters.</p>
+        </div>
+        <div>
+          <h2 style="font-size:clamp(22px,2.2vw,30px); line-height:1.15; letter-spacing:-0.02em; font-weight:700">What we did</h2>
+          <div style="display:grid; gap:18px; margin-top:18px">
+            <div style="display:flex; gap:14px">
+              <span style="font-family:'IBM Plex Mono',monospace; font-size:11.5px; color:oklch(0.48 0.13 150); padding-top:3px">01</span>
+              <div>
+                <div style="font-family:'Archivo',sans-serif; font-weight:600; font-size:16.5px">Content system</div>
+                <p style="font-size:15px; line-height:1.6; color:#5B5F5B; margin:6px 0 0">Four recurring formats — brew guides, estate stories, retail stockist features and UGC reposts — planned a month ahead.</p>
+              </div>
+            </div>
+            <div style="display:flex; gap:14px">
+              <span style="font-family:'IBM Plex Mono',monospace; font-size:11.5px; color:oklch(0.48 0.13 150); padding-top:3px">02</span>
+              <div>
+                <div style="font-family:'Archivo',sans-serif; font-weight:600; font-size:16.5px">Full SKU reshoot</div>
+                <p style="font-size:15px; line-height:1.6; color:#5B5F5B; margin:6px 0 0">Idearigs Studios shot the entire loose-leaf range over two studio days, plus a pour sequence for motion assets.</p>
+              </div>
+            </div>
+            <div style="display:flex; gap:14px">
+              <span style="font-family:'IBM Plex Mono',monospace; font-size:11.5px; color:oklch(0.48 0.13 150); padding-top:3px">03</span>
+              <div>
+                <div style="font-family:'Archivo',sans-serif; font-weight:600; font-size:16.5px">Account restructure</div>
+                <p style="font-size:15px; line-height:1.6; color:#5B5F5B; margin:6px 0 0">Catalogue sales campaigns with broad targeting, a retargeting tier at 18% of budget, and creative rotated fortnightly.</p>
+              </div>
+            </div>
+            <div style="display:flex; gap:14px">
+              <span style="font-family:'IBM Plex Mono',monospace; font-size:11.5px; color:oklch(0.48 0.13 150); padding-top:3px">04</span>
+              <div>
+                <div style="font-family:'Archivo',sans-serif; font-weight:600; font-size:16.5px">Reporting cadence</div>
+                <p style="font-size:15px; line-height:1.6; color:#5B5F5B; margin:6px 0 0">Fortnightly performance review against sell-through data supplied by the client's distributor.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:0 clamp(20px,5vw,72px) clamp(48px,6vw,88px)">
+    <div style="max-width:1240px; margin:0 auto">
+      <div style="font-family:'IBM Plex Mono',monospace; font-size:11.5px; letter-spacing:0.16em; color:oklch(0.48 0.13 150)">DELIVERED ASSETS</div>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:14px; margin-top:20px">
+        <figure style="margin:0; background:repeating-linear-gradient(135deg,#EFEFEC 0 9px,#E4E5E0 9px 18px); aspect-ratio:4/5; border:1px solid #E3E4E0; display:flex; align-items:flex-end; padding:16px">
+          <figcaption style="font-family:'IBM Plex Mono',monospace; font-size:10.5px; color:#6E736E; letter-spacing:0.08em; line-height:1.6">PRODUCT STILL — 4:5<br /><span style="color:#0A0B0A">Loose leaf range, white cyc</span></figcaption>
+        </figure>
+        <figure style="margin:0; background:repeating-linear-gradient(135deg,#EFEFEC 0 9px,#E4E5E0 9px 18px); aspect-ratio:4/5; border:1px solid #E3E4E0; display:flex; align-items:flex-end; padding:16px">
+          <figcaption style="font-family:'IBM Plex Mono',monospace; font-size:10.5px; color:#6E736E; letter-spacing:0.08em; line-height:1.6">LIFESTYLE — 4:5<br /><span style="color:#0A0B0A">Brew ritual, morning light</span></figcaption>
+        </figure>
+        <figure style="margin:0; background:repeating-linear-gradient(135deg,#EFEFEC 0 9px,#E4E5E0 9px 18px); aspect-ratio:4/5; border:1px solid #E3E4E0; display:flex; align-items:flex-end; padding:16px">
+          <figcaption style="font-family:'IBM Plex Mono',monospace; font-size:10.5px; color:#6E736E; letter-spacing:0.08em; line-height:1.6">SOCIAL FRAME — 4:5<br /><span style="color:#0A0B0A">Stockist feature template</span></figcaption>
+        </figure>
+        <figure style="margin:0; background:repeating-linear-gradient(135deg,#EFEFEC 0 9px,#E4E5E0 9px 18px); aspect-ratio:4/5; border:1px solid #E3E4E0; display:flex; align-items:flex-end; padding:16px">
+          <figcaption style="font-family:'IBM Plex Mono',monospace; font-size:10.5px; color:#6E736E; letter-spacing:0.08em; line-height:1.6">MOTION STILL — 4:5<br /><span style="color:#0A0B0A">Pour sequence, 6K</span></figcaption>
+        </figure>
+      </div>
+
+      <div style="border-left:4px solid oklch(0.72 0.18 148); background:#fff; border-top:1px solid #E3E4E0; border-right:1px solid #E3E4E0; border-bottom:1px solid #E3E4E0; padding:clamp(24px,3vw,40px); margin-top:24px">
+        <p style="font-size:clamp(17px,1.7vw,22px); line-height:1.55; margin:0; max-width:60ch; font-family:'Archivo',sans-serif; font-weight:500; letter-spacing:-0.01em">“We had worked with two agencies before. This is the first time the reporting matched what our distributor was seeing on the ground.”</p>
+        <div style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.1em; color:#8A8F8A; margin-top:20px">MARKETING DIRECTOR — CEYLON LEAF TEA CO.</div>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:#0A0B0A; color:#fff; padding:clamp(40px,5vw,64px) clamp(20px,5vw,72px)">
+    <div style="max-width:1240px; margin:0 auto; display:flex; flex-wrap:wrap; gap:20px; align-items:center; justify-content:space-between">
+      <div>
+        <div style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.14em; color:rgba(255,255,255,0.45)">NEXT CASE STUDY</div>
+        <div style="font-family:'Archivo',sans-serif; font-size:clamp(22px,2.4vw,32px); font-weight:700; letter-spacing:-0.02em; margin-top:10px">Marino Beach Residences</div>
+      </div>
+      <div style="display:flex; flex-wrap:wrap; gap:12px">
+        <a href="Portfolio%20Gallery.dc.html" style="border:1px solid rgba(255,255,255,0.28); color:#fff; font-family:'Archivo',sans-serif; font-weight:600; font-size:15px; padding:15px 24px" style-hover="border-color:oklch(0.72 0.18 148); color:#fff">All work</a>
+        <a href="Contact.dc.html" style="background:oklch(0.72 0.18 148); color:#07210F; font-family:'Archivo',sans-serif; font-weight:600; font-size:15px; padding:15px 24px; display:flex; align-items:center; gap:10px" style-hover="background:oklch(0.82 0.19 148); color:#07210F">
+          Start a project
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer style="background:#0A0B0A; color:#fff; border-top:1px solid rgba(255,255,255,0.14); padding:32px clamp(20px,5vw,72px)">
+    <div style="max-width:1240px; margin:0 auto; display:flex; flex-wrap:wrap; gap:16px; justify-content:space-between; align-items:center">
+      <p style="margin:0; font-size:13px; line-height:1.7; color:rgba(255,255,255,0.55); max-width:60ch">Idearigs (Private) Limited is a legally registered entity in Sri Lanka, incorporated under the Companies Act No. 07 of 2007. Reg. No. PV 00298471.</p>
+      <a href="Agency%20Landing%20Page.dc.html" style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.1em; color:rgba(255,255,255,0.55)" style-hover="color:oklch(0.78 0.16 148)">← BACK TO HOME</a>
+    </div>
+  </footer>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  _mqInit() {
+    if (this._mq || typeof window === "undefined" || !window.matchMedia) return;
+    this._mq = window.matchMedia("(max-width: 760px)");
+    this._mqh = () => this.setState({ isMobile: this._mq.matches, menuOpen: this._mq.matches ? !!(this.state && this.state.menuOpen) : false });
+    if (this._mq.addEventListener) this._mq.addEventListener("change", this._mqh); else this._mq.addListener(this._mqh);
+    this._mqh();
+  }
+  mobileVals() {
+    const st = this.state || {};
+    const m = st.isMobile !== undefined ? st.isMobile : (typeof window !== "undefined" && window.innerWidth <= 760);
+    return { isMobile: m, isDesktop: !m, menuOpen: !!st.menuOpen, openMenu: () => this.setState({ menuOpen: true }), closeMenu: () => this.setState({ menuOpen: false }) };
+  }
+
+  componentDidMount() { this._mqInit(); }
+  renderVals() { return { ...this.mobileVals() }; }
+}
+</script>
+</body>
+</html>

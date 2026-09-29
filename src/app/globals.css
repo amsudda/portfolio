@@ -1,0 +1,374 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------------------
+   Design tokens — see design-handoff/README.md ("Design Tokens").
+   Only black, white and green are allowed.
+--------------------------------------------------------------------------- */
+@theme {
+  /* The handoff breakpoint is ≤760px for mobile, so `md:` means "desktop". */
+  --breakpoint-md: 761px;
+
+  --font-display: var(--font-archivo), system-ui, sans-serif;
+  --font-sans: var(--font-plex-sans), system-ui, sans-serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, monospace;
+
+  --color-ink: #0a0b0a;
+  --color-ink-deep: #080908;
+  --color-panel: #0b0c0b;
+  --color-paper: #fafaf8;
+  --color-line: #e3e4e0;
+  --color-line-soft: #e9eae6;
+  --color-line-faint: #ebece8;
+  --color-field: #d8dad5;
+  --color-bar: #e1e3de;
+  --color-body: #4c514c;
+  --color-muted: #5b5f5b;
+  --color-caption: #8a8f8a;
+  --color-caption-dark: #6e736e;
+
+  --color-green: oklch(0.72 0.18 148);
+  --color-green-bright: oklch(0.78 0.16 148);
+  --color-green-hover: oklch(0.82 0.19 148);
+  --color-green-deep: oklch(0.48 0.13 150);
+  --color-green-deeper: oklch(0.42 0.12 150);
+  --color-green-link-hover: oklch(0.62 0.17 148);
+  --color-on-green: #07210f;
+  --color-on-green-deep: #06210e;
+
+  --container-site: 1240px;
+}
+
+/* ---------------------------------------------------------------------------
+   Layout utilities
+--------------------------------------------------------------------------- */
+@utility container-site {
+  max-width: var(--container-site);
+  margin-inline: auto;
+}
+@utility px-gutter {
+  padding-inline: clamp(20px, 5vw, 72px);
+}
+@utility py-section {
+  padding-block: clamp(64px, 8vw, 120px);
+}
+@utility pad-admin {
+  padding: clamp(20px, 3vw, 36px);
+}
+
+/* ---------------------------------------------------------------------------
+   Type utilities
+--------------------------------------------------------------------------- */
+@utility eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+@utility h-section {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 3.4vw, 46px);
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  font-weight: 700;
+  text-wrap: balance;
+}
+
+/* ---------------------------------------------------------------------------
+   Placeholders — 135° stripes, labelled with the intended shot.
+--------------------------------------------------------------------------- */
+@utility stripes-light {
+  background: repeating-linear-gradient(135deg, #f1f1ee 0 8px, #e7e8e3 8px 16px);
+}
+@utility stripes-figure {
+  background: repeating-linear-gradient(135deg, #efefec 0 9px, #e4e5e0 9px 18px);
+}
+@utility stripes-dark {
+  background: repeating-linear-gradient(135deg, #1c1d1c 0 8px, #151615 8px 16px);
+}
+@utility stripes-video {
+  background: repeating-linear-gradient(135deg, #161716 0 10px, #101110 10px 20px);
+}
+@utility stripes-drop {
+  background: repeating-linear-gradient(135deg, #151615 0 8px, #111211 8px 16px);
+}
+
+/* ---------------------------------------------------------------------------
+   Glassmorphism — only on dark sections, always over a textured backdrop.
+--------------------------------------------------------------------------- */
+@utility glass {
+  background: rgba(255, 255, 255, 0.08);
+  -webkit-backdrop-filter: blur(24px) saturate(160%);
+  backdrop-filter: blur(24px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.24), 0 20px 44px rgba(0, 0, 0, 0.34);
+}
+@utility glass-admin {
+  background: rgba(255, 255, 255, 0.06);
+  -webkit-backdrop-filter: blur(22px) saturate(160%);
+  backdrop-filter: blur(22px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18);
+}
+@utility glass-soft {
+  background: rgba(255, 255, 255, 0.04);
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+}
+@utility backdrop-texture {
+  background:
+    radial-gradient(620px 420px at 10% 16%, oklch(0.72 0.18 148 / 0.26), transparent 68%),
+    radial-gradient(720px 520px at 88% 82%, rgba(255, 255, 255, 0.1), transparent 70%),
+    repeating-linear-gradient(135deg, rgba(255, 255, 255, 0.035) 0 14px, transparent 14px 28px);
+}
+@utility backdrop-texture-reel {
+  background:
+    radial-gradient(620px 420px at 82% 12%, oklch(0.72 0.18 148 / 0.26), transparent 68%),
+    radial-gradient(720px 520px at 88% 82%, rgba(255, 255, 255, 0.1), transparent 70%),
+    repeating-linear-gradient(135deg, rgba(255, 255, 255, 0.035) 0 14px, transparent 14px 28px);
+}
+@utility backdrop-texture-admin {
+  background:
+    radial-gradient(700px 460px at 88% -6%, oklch(0.72 0.18 148 / 0.16), transparent 68%),
+    repeating-linear-gradient(135deg, rgba(255, 255, 255, 0.02) 0 14px, transparent 14px 28px);
+}
+
+/* ---------------------------------------------------------------------------
+   Base
+--------------------------------------------------------------------------- */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    text-wrap: balance;
+  }
+  p {
+    text-wrap: pretty;
+  }
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-green);
+    outline-offset: 2px;
+  }
+  ::placeholder {
+    color: #9ba09b;
+  }
+  .admin-root ::placeholder {
+    color: rgba(255, 255, 255, 0.35);
+  }
+  /* Section anchors land below the sticky 68px header. */
+  [id] {
+    scroll-margin-top: 72px;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Motion. Everything below is neutralised by the prefers-reduced-motion block.
+--------------------------------------------------------------------------- */
+@utility glass-hero {
+  background-color: rgba(255, 255, 255, 0.055);
+  background-image:
+    radial-gradient(420px circle at var(--mx, 30%) var(--my, 0%), rgba(255, 255, 255, 0.1), transparent 60%),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.015) 55%);
+  -webkit-backdrop-filter: blur(28px) saturate(170%);
+  backdrop-filter: blur(28px) saturate(170%);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22), 0 30px 80px rgba(0, 0, 0, 0.45);
+}
+
+/* Hero headline: each word rises out of a mask. */
+.word-mask {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  padding-bottom: 0.1em;
+  margin-bottom: -0.1em;
+}
+.word-mask > span {
+  display: inline-block;
+  animation: rise 1s cubic-bezier(0.2, 0.75, 0.1, 1) both;
+  animation-delay: var(--d, 0ms);
+}
+@keyframes rise {
+  from {
+    transform: translateY(110%);
+  }
+  to {
+    transform: none;
+  }
+}
+
+.anim-fade-up {
+  animation: fade-up 0.9s cubic-bezier(0.2, 0.75, 0.1, 1) both;
+  animation-delay: var(--d, 0ms);
+}
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.anim-float {
+  animation: float 7s ease-in-out infinite;
+  animation-delay: var(--d, 0ms);
+}
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Aurora backdrop: blurred light blobs drifting behind the glass. */
+.aurora-blob {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(90px);
+  will-change: transform;
+  animation: drift var(--t, 22s) ease-in-out infinite alternate;
+}
+@keyframes drift {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(var(--x1, 6%), var(--y1, -8%), 0) scale(1.15);
+  }
+  100% {
+    transform: translate3d(var(--x2, -5%), var(--y2, 6%), 0) scale(0.92);
+  }
+}
+.ken-burns {
+  animation: ken-burns 30s ease-in-out infinite alternate;
+}
+@keyframes ken-burns {
+  from {
+    transform: scale(1.08);
+  }
+  to {
+    transform: scale(1.16) translate3d(-1.5%, -1%, 0);
+  }
+}
+.grain {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");
+  mix-blend-mode: overlay;
+}
+
+/* Client marquee */
+.marquee-track {
+  animation: marquee 45s linear infinite;
+}
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.scroll-cue {
+  animation: scroll-cue 2.2s cubic-bezier(0.6, 0, 0.3, 1) infinite;
+}
+@keyframes scroll-cue {
+  0% {
+    transform: scaleY(0);
+    transform-origin: top;
+  }
+  45% {
+    transform: scaleY(1);
+    transform-origin: top;
+  }
+  55% {
+    transform: scaleY(1);
+    transform-origin: bottom;
+  }
+  100% {
+    transform: scaleY(0);
+    transform-origin: bottom;
+  }
+}
+
+/*
+ * Scroll reveals: RevealRoot adds [data-inview] as elements enter the viewport.
+ * Hidden start states only apply when scripting is on, so no-JS visitors (and
+ * browsers without this media feature) always see the content.
+ */
+@media (scripting: enabled) {
+  [data-reveal] {
+    opacity: 0;
+    transform: translateY(28px);
+    /* Keep hover transitions (translate/colours) working without the stagger delay. */
+    transition:
+      opacity 0.9s cubic-bezier(0.2, 0.75, 0.1, 1) var(--d, 0ms),
+      transform 0.9s cubic-bezier(0.2, 0.75, 0.1, 1) var(--d, 0ms),
+      translate 0.35s ease,
+      border-color 0.2s ease,
+      background-color 0.2s ease,
+      box-shadow 0.35s ease;
+  }
+  [data-reveal][data-inview] {
+    opacity: 1;
+    transform: none;
+  }
+  [data-grow] {
+    transition: transform 1.1s cubic-bezier(0.2, 0.75, 0.1, 1);
+    transition-delay: var(--d, 0ms);
+  }
+  [data-grow="y"] {
+    transform: scaleY(0);
+    transform-origin: bottom;
+  }
+  [data-grow="x"] {
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+  [data-inview] [data-grow] {
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aurora-blob,
+  .ken-burns,
+  .marquee-track,
+  .anim-float,
+  .scroll-cue {
+    animation: none !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}

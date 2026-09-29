@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  body { margin: 0; background: #080908; font-family: "IBM Plex Sans", system-ui, sans-serif; -webkit-font-smoothing: antialiased; color: #fff; }
+  * { box-sizing: border-box; }
+  a { color: oklch(0.78 0.16 148); text-decoration: none; }
+  a:hover { color: oklch(0.86 0.14 148); }
+  h1, h2, h3 { font-family: "Archivo", system-ui, sans-serif; margin: 0; }
+  input, select, textarea { font-family: "IBM Plex Sans", system-ui, sans-serif; }
+  input:focus, select:focus, textarea:focus { outline: none; border-color: oklch(0.72 0.18 148); }
+  ::placeholder { color: rgba(255,255,255,0.35); }
+</style>
+</helmet>
+
+<div style="display:flex; flex-wrap:wrap; align-items:stretch; min-height:100vh; background:#080908">
+
+  <sc-if value="{{ isMobile }}" hint-placeholder-val="{{ false }}">
+    <div style="position:sticky; top:0; z-index:40; width:100%; display:flex; align-items:center; justify-content:space-between; gap:12px; padding:10px 16px; background:rgba(10,11,10,0.86); backdrop-filter:blur(18px) saturate(160%); -webkit-backdrop-filter:blur(18px) saturate(160%); border-bottom:1px solid rgba(255,255,255,0.1)">
+      <div style="display:flex; align-items:baseline; font-family:'Archivo',sans-serif; font-weight:700; font-size:21px; letter-spacing:-0.015em; line-height:1"><span style="position:relative; display:inline-block">ı<span style="position:absolute; left:50%; top:0.05em; transform:translateX(-50%); width:0.17em; height:0.17em; border-radius:50%; background:oklch(0.72 0.18 148)"></span></span>dearigs<span style="font-weight:500; font-size:0.6em; letter-spacing:0.18em; color:rgba(255,255,255,0.62); margin-left:0.4em">ADMIN</span></div>
+      <button onClick="{{ openMenu }}" aria-label="Open menu" style="width:44px; height:44px; flex:0 0 auto; display:flex; align-items:center; justify-content:center; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.16); color:#fff; cursor:pointer">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16"></path><path d="M4 12h16"></path><path d="M4 17h10"></path></svg>
+        </button>
+    </div>
+  </sc-if>
+  <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+    <div style="position:fixed; inset:0; z-index:80; display:flex; background:rgba(4,5,4,0.6); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px)">
+      <div style="width:min(300px,86%); height:100%; overflow-y:auto; background:#0A0B0A; border-right:1px solid rgba(255,255,255,0.12); padding:12px 16px 24px; display:flex; flex-direction:column; gap:24px">
+        <div style="display:flex; align-items:center; justify-content:space-between; min-height:44px">
+          <div style="display:flex; align-items:baseline; font-family:'Archivo',sans-serif; font-weight:700; font-size:21px; letter-spacing:-0.015em; line-height:1"><span style="position:relative; display:inline-block">ı<span style="position:absolute; left:50%; top:0.05em; transform:translateX(-50%); width:0.17em; height:0.17em; border-radius:50%; background:oklch(0.72 0.18 148)"></span></span>dearigs<span style="font-weight:500; font-size:0.6em; letter-spacing:0.18em; color:rgba(255,255,255,0.62); margin-left:0.4em">ADMIN</span></div>
+          <button onClick="{{ closeMenu }}" aria-label="Close menu" style="width:44px; height:44px; flex:0 0 auto; display:flex; align-items:center; justify-content:center; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.16); color:#fff; cursor:pointer">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>
+        </button>
+        </div>
+        <nav style="display:grid; gap:2px">
+      <div style="font-family:'IBM Plex Mono',monospace; font-size:9.5px; letter-spacing:0.16em; color:rgba(255,255,255,0.35); padding:0 12px 10px">CONTENT</div>
+      <a onClick="{{ closeMenu }}" href="Admin%20Projects.dc.html" style="display:flex; align-items:center; gap:11px; padding:11px 12px; font-size:14.5px; color:rgba(255,255,255,0.6)" style-hover="color:#fff; background:rgba(255,255,255,0.05)">Projects</a>
+      <a onClick="{{ closeMenu }}" href="Admin%20Gallery.dc.html" style="display:flex; align-items:center; gap:11px; padding:11px 12px; font-size:14.5px; color:rgba(255,255,255,0.6)" style-hover="color:#fff; background:rgba(255,255,255,0.05)">Studio gallery</a>
+      <a onClick="{{ closeMenu }}" href="Admin%20Showreel.dc.html" style="display:flex; align-items:center; gap:11px; padding:11px 12px; font-size:14.5px; color:rgba(255,255,255,0.6)" style-hover="color:#fff; background:rgba(255,255,255,0.05)">Showreel clips</a>
+      <a onClick="{{ closeMenu }}" href="Admin%20Clients.dc.html" style="display:flex; align-items:center; gap:11px; padding:11px 12px; font-size:14.5px; color:rgba(255,255,255,0.6)" style-hover="color:#fff; background:rgba(255,255,255,0.05)">Clients</a>
+      <div style="font-family:'IBM Plex Mono',monospace; font-size:9.5px; letter-spacing:0.16em; color:rgba(255,255,255,0.35); padding:18px 12px 10px">PERFORMANCE</div>
+      <span style="display:flex; align-items:center; gap:11px; padding:11px 12px; font-size:14.5px; background:rgba(255,255,255,0.08); border-left:2px solid oklch(0.72 0.18 148); color:#fff">Meta ads data</span>
+      <div style="font-family:'IBM Plex Mono',monospace; font-size:9.5px; letter-spacing:0.16em; color:rgba(255,255,255,0.35); padding:18px 12px 10px">ACCOUNT</div>
+      <a onClick="{{ closeMenu }}" href="Agency%20Landing%20Page.dc.html" style="display:flex; align-items:center; gap:11px; padding:11px 12px; font-size:14.5px; color:rgba(255,255,255,0.6)" style-hover="color:#fff; background:rgba(255,255,255,0.05)">View live site</a>
+    </nav>
+      </div>
+      <button onClick="{{ closeMenu }}" aria-label="Close menu" style="flex:1; background:none; border:none; cursor:pointer"></button>
+    </div>
+  </sc-if>
+  <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
+    <aside style="width:248px; flex:0 0 auto; border-right:1px solid rgba(255,255,255,0.1); padding:22px 18px; display:flex; flex-direction:column; gap:28px; background:#0A0B0A">
+    <div style="display:flex; align-items:baseline; font-family:'Archivo',sans-serif; font-weight:700; font-size:21px; letter-spacing:-0.015em; line-height:1"><span style="position:relative; display:inline-block">ı<span style="position:absolute; left:50%; top:0.05em; transform:translateX(-50%); width:0.17em; height:0.17em; border-radius:50%; background:oklch(0.72 0.18 148)"></span></span>dearigs<span style="font-weight:500; font-size:0.6em; letter-spacing:0.18em; color:rgba(255,255,255,0.62); margin-left:0.4em">ADMIN</span></div>
+    <nav style="display:grid; gap:2px">
+      <div style="font-family:'IBM Plex Mono',monospace; font-size:9.5px; letter-spacing:0.16em; color:rgba(255,255,255,0.35); padding:0 12px 10px">CONTENT</div>
+      <a href="Admin%20Projects.dc.html" style="display:flex; align-items:center; gap:11px; padding:11px 12px; font-size:14.5px; color:rgba(255,255,255,0.6)" style-hover="color:#fff; background:rgba(255,255,255,0.05)">Projects</a>
+      <a href="Admin%20Gallery.dc.html" style="display:flex; align-items:center; gap:11px; padding:11px 12px; font-size:14.5px; color:rgba(255,255,255,0.6)" style-hover="color:#fff; background:rgba(255,255,255,0.05)">Studio gallery</a>
+      <a href="Admin%20Showreel.dc.html" style="display:flex; align-items:center; gap:11px; padding:11px 12px; font-size:14.5px; color:rgba(255,255,255,0.6)" style-hover="color:#fff; background:rgba(255,255,255,0.05)">Showreel clips</a>
+      <a href="Admin%20Clients.dc.html" style="display:flex; align-items:center; gap:11px; padding:11px 12px; font-size:14.5px; color:rgba(255,255,255,0.6)" style-hover="color:#fff; background:rgba(255,255,255,0.05)">Clients</a>
+      <div style="font-family:'IBM Plex Mono',monospace; font-size:9.5px; letter-spacing:0.16em; color:rgba(255,255,255,0.35); padding:18px 12px 10px">PERFORMANCE</div>
+      <span style="display:flex; align-items:center; gap:11px; padding:11px 12px; font-size:14.5px; background:rgba(255,255,255,0.08); border-left:2px solid oklch(0.72 0.18 148); color:#fff">Meta ads data</span>
+      <div style="font-family:'IBM Plex Mono',monospace; font-size:9.5px; letter-spacing:0.16em; color:rgba(255,255,255,0.35); padding:18px 12px 10px">ACCOUNT</div>
+      <a href="Agency%20Landing%20Page.dc.html" style="display:flex; align-items:center; gap:11px; padding:11px 12px; font-size:14.5px; color:rgba(255,255,255,0.6)" style-hover="color:#fff; background:rgba(255,255,255,0.05)">View live site</a>
+    </nav>
+    <div style="margin-top:auto; border-top:1px solid rgba(255,255,255,0.1); padding-top:16px; display:flex; align-items:center; gap:11px">
+      <div style="width:34px; height:34px; border-radius:50%; background:repeating-linear-gradient(135deg,#1E201E 0 6px,#171817 6px 12px); flex:0 0 auto"></div>
+      <div>
+        <div style="font-size:13.5px; font-family:'Archivo',sans-serif; font-weight:600">Nethmi F.</div>
+        <div style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:rgba(255,255,255,0.45); letter-spacing:0.08em">PAID MEDIA LEAD</div>
+      </div>
+    </div>
+  </aside>
+  </sc-if>
+
+  <main style="flex:1 1 460px; min-width:0; position:relative; overflow:hidden">
+    <div style="position:absolute; inset:0; pointer-events:none; background:radial-gradient(700px 460px at 88% -6%, oklch(0.72 0.18 148 / 0.16), transparent 68%), repeating-linear-gradient(135deg, rgba(255,255,255,0.02) 0 14px, transparent 14px 28px)"></div>
+
+    <div style="position:relative; padding:clamp(20px,3vw,36px)">
+      <div style="display:flex; flex-wrap:wrap; gap:16px; align-items:flex-end; justify-content:space-between">
+        <div>
+          <div style="font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:0.14em; color:rgba(255,255,255,0.45)">PERFORMANCE / META ADS DATA</div>
+          <h1 style="font-size:clamp(24px,2.6vw,34px); letter-spacing:-0.025em; font-weight:700; margin-top:12px">Ad account records</h1>
+          <p style="font-size:14.5px; line-height:1.6; color:rgba(255,255,255,0.55); margin:10px 0 0; max-width:56ch">Enter each client's reconciled figures. Published records feed the Performance section on the home page — the blended numbers below are what visitors see.</p>
+        </div>
+        <button onClick="{{ onNew }}" style="background:oklch(0.72 0.18 148); color:#07210F; border:none; font-family:'Archivo',sans-serif; font-weight:600; font-size:14.5px; padding:13px 20px; cursor:pointer; display:flex; align-items:center; gap:9px" style-hover="background:oklch(0.82 0.19 148)">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"></path><path d="M5 12h14"></path></svg>
+          Add account data
+        </button>
+      </div>
+
+      <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:12px; margin-top:clamp(22px,3vw,32px)">
+        <div style="background:rgba(255,255,255,0.06); backdrop-filter:blur(22px) saturate(160%); -webkit-backdrop-filter:blur(22px) saturate(160%); border:1px solid rgba(255,255,255,0.14); box-shadow:inset 0 1px 0 rgba(255,255,255,0.18); border-radius:14px; padding:18px">
+          <div style="font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:0.12em; color:rgba(255,255,255,0.45)">BLENDED ROAS</div>
+          <div style="font-family:'Archivo',sans-serif; font-size:28px; font-weight:700; letter-spacing:-0.02em; margin-top:8px; color:oklch(0.78 0.16 148)">{{ blendedRoas }}</div>
+          <div style="font-family:'IBM Plex Mono',monospace; font-size:9.5px; color:rgba(255,255,255,0.4); margin-top:6px; letter-spacing:0.08em">SPEND-WEIGHTED</div>
+        </div>
+        <div style="background:rgba(255,255,255,0.06); backdrop-filter:blur(22px) saturate(160%); -webkit-backdrop-filter:blur(22px) saturate(160%); border:1px solid rgba(255,255,255,0.14); box-shadow:inset 0 1px 0 rgba(255,255,255,0.18); border-radius:14px; padding:18px">
+          <div style="font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:0.12em; color:rgba(255,255,255,0.45)">AVG. CPC</div>
+          <div style="font-family:'Archivo',sans-serif; font-size:28px; font-weight:700; letter-spacing:-0.02em; margin-top:8px">{{ avgCpc }}</div>
+          <div style="font-family:'IBM Plex Mono',monospace; font-size:9.5px; color:rgba(255,255,255,0.4); margin-top:6px; letter-spacing:0.08em">LKR</div>
+        </div>
+        <div style="background:rgba(255,255,255,0.06); backdrop-filter:blur(22px) saturate(160%); -webkit-backdrop-filter:blur(22px) saturate(160%); border:1px solid rgba(255,255,255,0.14); box-shadow:inset 0 1px 0 rgba(255,255,255,0.18); border-radius:14px; padding:18px">
+          <div style="font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:0.12em; color:rgba(255,255,255,0.45)">AVG. CONV. RATE</div>
+          <div style="font-family:'Archivo',sans-serif; font-size:28px; font-weight:700; letter-spacing:-0.02em; margin-top:8px">{{ avgCvr }}</div>
+          <div style="font-family:'IBM Plex Mono',monospace; font-size:9.5px; color:rgba(255,255,255,0.4); margin-top:6px; letter-spacing:0.08em">ACROSS PUBLISHED</div>
+        </div>
+        <div style="background:rgba(255,255,255,0.06); backdrop-filter:blur(22px) saturate(160%); -webkit-backdrop-filter:blur(22px) saturate(160%); border:1px solid rgba(255,255,255,0.14); box-shadow:inset 0 1px 0 rgba(255,255,255,0.18); border-radius:14px; padding:18px">
+          <div style="font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:0.12em; color:rgba(255,255,255,0.45)">TOTAL SPEND</div>
+          <div style="font-family:'Archivo',sans-serif; font-size:28px; font-weight:700; letter-spacing:-0.02em; margin-top:8px">{{ totalSpend }}</div>
+          <div style="font-family:'IBM Plex Mono',monospace; font-size:9.5px; color:rgba(255,255,255,0.4); margin-top:6px; letter-spacing:0.08em">LKR, PUBLISHED</div>
+        </div>
+      </div>
+
+      <div style="display:flex; flex-wrap:wrap; gap:12px; align-items:center; margin-top:clamp(22px,3vw,32px)">
+        <label style="flex:1 1 220px; display:flex; align-items:center; gap:10px; border:1px solid rgba(255,255,255,0.16); background:rgba(255,255,255,0.04); padding:11px 14px">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.45)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
+          <input value="{{ query }}" onChange="{{ onQuery }}" placeholder="Search accounts" style="flex:1; min-width:0; background:none; border:none; color:#fff; font-size:14.5px" />
+        </label>
+        <div style="font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:0.1em; color:rgba(255,255,255,0.45)">{{ count }} RECORDS</div>
+      </div>
+
+      <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
+      <div style="margin-top:16px; border:1px solid rgba(255,255,255,0.14); background:rgba(255,255,255,0.04); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); overflow-x:auto">
+        <div style="min-width:900px">
+          <div style="display:grid; grid-template-columns:1.8fr 1.1fr 1fr 0.7fr 0.7fr 0.7fr 0.8fr 88px; gap:12px; padding:14px 20px; border-bottom:1px solid rgba(255,255,255,0.12); font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:0.1em; color:rgba(255,255,255,0.45)">
+            <span>ACCOUNT</span><span>PERIOD</span><span>SPEND</span><span>ROAS</span><span>CPC</span><span>CVR</span><span>STATUS</span><span>ACTIONS</span>
+          </div>
+          <sc-for list="{{ rows }}" as="row" hint-placeholder-count="4">
+            <div style="display:grid; grid-template-columns:1.8fr 1.1fr 1fr 0.7fr 0.7fr 0.7fr 0.8fr 88px; gap:12px; padding:16px 20px; border-bottom:1px solid rgba(255,255,255,0.07); align-items:center; font-size:14px">
+              <div style="font-family:'Archivo',sans-serif; font-weight:600; font-size:14.5px">{{ row.account }}</div>
+              <span style="font-family:'IBM Plex Mono',monospace; font-size:11px; color:rgba(255,255,255,0.6)">{{ row.period }}</span>
+              <span style="font-family:'IBM Plex Mono',monospace; color:rgba(255,255,255,0.8)">{{ row.spend }}</span>
+              <span style="font-family:'IBM Plex Mono',monospace; color:oklch(0.78 0.16 148)">{{ row.roas }}x</span>
+              <span style="font-family:'IBM Plex Mono',monospace; color:rgba(255,255,255,0.8)">{{ row.cpc }}</span>
+              <span style="font-family:'IBM Plex Mono',monospace; color:rgba(255,255,255,0.8)">{{ row.cvr }}%</span>
+              <span style="font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:0.1em; color:{{ row.statusColor }}">{{ row.status }}</span>
+              <button onClick="{{ row.onEdit }}" style="background:none; border:1px solid rgba(255,255,255,0.2); color:#fff; font-family:'Archivo',sans-serif; font-weight:600; font-size:13px; padding:9px 14px; cursor:pointer" style-hover="background:rgba(255,255,255,0.12)">Edit</button>
+            </div>
+          </sc-for>
+          <sc-if value="{{ isEmpty }}" hint-placeholder-val="{{ false }}">
+            <div style="padding:44px 20px; text-align:center; font-family:'IBM Plex Mono',monospace; font-size:11.5px; letter-spacing:0.1em; color:rgba(255,255,255,0.45)">NO ACCOUNTS MATCH THIS SEARCH</div>
+          </sc-if>
+        </div>
+      </div>
+      </sc-if>
+      <sc-if value="{{ isMobile }}" hint-placeholder-val="{{ false }}">
+        <div style="display:grid; gap:10px; margin-top:16px">
+        <sc-for list="{{ rows }}" as="row" hint-placeholder-count="4">
+          <button onClick="{{ row.onEdit }}" style="text-align:left; width:100%; cursor:pointer; color:#fff; background:rgba(255,255,255,0.05); backdrop-filter:blur(18px); -webkit-backdrop-filter:blur(18px); border:1px solid rgba(255,255,255,0.14); border-radius:14px; padding:14px; display:grid; gap:12px; font-family:inherit">
+            <div style="display:flex; gap:12px; align-items:center">
+              <div style="flex:1; min-width:0">
+                <div style="font-family:'Archivo',sans-serif; font-weight:600; font-size:15.5px">{{ row.account }}</div>
+                <div style="font-family:'IBM Plex Mono',monospace; font-size:10.5px; color:rgba(255,255,255,0.5); margin-top:4px">{{ row.period }}</div>
+              </div>
+              <span style="font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:0.1em; color:{{ row.statusColor }}">{{ row.status }}</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.45)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto"><path d="m9 18 6-6-6-6"></path></svg>
+            </div>
+            <div style="display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:8px; border-top:1px solid rgba(255,255,255,0.1); padding-top:12px">
+              <div><div style="font-family:'IBM Plex Mono',monospace; font-size:9px; letter-spacing:0.1em; color:rgba(255,255,255,0.45)">ROAS</div><div style="font-family:'IBM Plex Mono',monospace; font-size:14px; margin-top:4px; color:oklch(0.78 0.16 148)">{{ row.roas }}x</div></div>
+              <div><div style="font-family:'IBM Plex Mono',monospace; font-size:9px; letter-spacing:0.1em; color:rgba(255,255,255,0.45)">CPC</div><div style="font-family:'IBM Plex Mono',monospace; font-size:14px; margin-top:4px">{{ row.cpc }}</div></div>
+              <div><div style="font-family:'IBM Plex Mono',monospace; font-size:9px; letter-spacing:0.1em; color:rgba(255,255,255,0.45)">CVR</div><div style="font-family:'IBM Plex Mono',monospace; font-size:14px; margin-top:4px">{{ row.cvr }}%</div></div>
+              <div><div style="font-family:'IBM Plex Mono',monospace; font-size:9px; letter-spacing:0.1em; color:rgba(255,255,255,0.45)">SPEND</div><div style="font-family:'IBM Plex Mono',monospace; font-size:12px; margin-top:5px">{{ row.spend }}</div></div>
+            </div>
+          </button>
+        </sc-for>
+        <sc-if value="{{ isEmpty }}" hint-placeholder-val="{{ false }}"><div style="padding:36px 16px; text-align:center; font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.1em; color:rgba(255,255,255,0.45); border:1px solid rgba(255,255,255,0.12); border-radius:14px">NO ACCOUNTS MATCH THIS SEARCH</div></sc-if>
+        </div>
+      </sc-if>
+
+      <div style="margin-top:16px; border:1px solid rgba(255,255,255,0.14); background:rgba(255,255,255,0.04); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); border-radius:16px; padding:clamp(18px,2.4vw,28px)">
+        <div style="display:flex; flex-wrap:wrap; gap:12px; justify-content:space-between; align-items:baseline">
+          <h2 style="font-size:17px; font-weight:600">Monthly blended ROAS — front-end chart</h2>
+          <span style="font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:0.1em; color:rgba(255,255,255,0.45)">AVERAGE OF PUBLISHED RECORDS</span>
+        </div>
+        <div style="display:flex; align-items:flex-end; gap:clamp(6px,1.4vw,16px); height:150px; margin-top:22px; border-bottom:1px solid rgba(255,255,255,0.14)">
+          <sc-for list="{{ chart }}" as="bar" hint-placeholder-count="8">
+            <div style="flex:1; display:flex; flex-direction:column; justify-content:flex-end; height:100%; gap:8px">
+              <span style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:rgba(255,255,255,0.6); text-align:center">{{ bar.value }}</span>
+              <div style="background:oklch(0.72 0.18 148); height:{{ bar.height }}"></div>
+            </div>
+          </sc-for>
+        </div>
+        <div style="display:flex; gap:clamp(6px,1.4vw,16px); margin-top:10px">
+          <sc-for list="{{ chart }}" as="bar" hint-placeholder-count="8">
+            <span style="flex:1; text-align:center; font-family:'IBM Plex Mono',monospace; font-size:10px; color:rgba(255,255,255,0.45)">{{ bar.label }}</span>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+
+    <sc-if value="{{ editing }}" hint-placeholder-val="{{ false }}">
+      <div style="position:fixed; inset:0; z-index:60; display:flex; justify-content:flex-end; background:rgba(4,5,4,0.6); backdrop-filter:blur(4px)">
+        <div style="width:min(580px,100%); height:100%; overflow-y:auto; background:#0B0C0B; border-left:1px solid rgba(255,255,255,0.14); padding:clamp(20px,3vw,32px)">
+          <div style="display:flex; align-items:flex-start; justify-content:space-between; gap:16px">
+            <div>
+              <div style="font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:0.14em; color:oklch(0.78 0.16 148)">{{ panelLabel }}</div>
+              <h2 style="font-size:clamp(20px,2.2vw,26px); letter-spacing:-0.02em; font-weight:700; margin-top:10px">{{ panelTitle }}</h2>
+            </div>
+            <button onClick="{{ onClose }}" aria-label="Close" style="background:none; border:1px solid rgba(255,255,255,0.2); color:#fff; width:38px; height:38px; display:flex; align-items:center; justify-content:center; cursor:pointer" style-hover="background:rgba(255,255,255,0.12)">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>
+            </button>
+          </div>
+
+          <div style="display:grid; gap:16px; margin-top:26px">
+            <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:16px">
+              <label style="display:grid; gap:7px">
+                <span style="font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:0.1em; color:rgba(255,255,255,0.5)">ACCOUNT / CLIENT</span>
+                <input value="{{ form.account }}" onChange="{{ onAccount }}" placeholder="Client name" style="border:1px solid rgba(255,255,255,0.18); background:rgba(255,255,255,0.04); padding:12px 14px; font-size:15px; color:#fff" />
+              </label>
+              <label style="display:grid; gap:7px">
+                <span style="font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:0.1em; color:rgba(255,255,255,0.5)">REPORTING PERIOD</span>
+                <input value="{{ form.period }}" onChange="{{ onPeriod }}" placeholder="Sep 2025 — Aug 2026" style="border:1px solid rgba(255,255,255,0.18); background:rgba(255,255,255,0.04); padding:12px 14px; font-size:15px; color:#fff" />
+              </label>
+            </div>
+
+            <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:12px">
+              <label style="display:grid; gap:7px">
+                <span style="font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:0.1em; color:rgba(255,255,255,0.5)">SPEND (LKR)</span>
+                <input value="{{ form.spend }}" onChange="{{ onSpend }}" placeholder="4180000" style="border:1px solid rgba(255,255,255,0.18); background:rgba(255,255,255,0.04); padding:12px 14px; font-size:15px; color:#fff; font-family:'IBM Plex Mono',monospace" />
+              </label>
+              <label style="display:grid; gap:7px">
+                <span style="font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:0.1em; color:rgba(255,255,255,0.5)">ROAS</span>
+                <input value="{{ form.roas }}" onChange="{{ onRoas }}" placeholder="6.1" style="border:1px solid rgba(255,255,255,0.18); background:rgba(255,255,255,0.04); padding:12px 14px; font-size:15px; color:#fff; font-family:'IBM Plex Mono',monospace" />
+              </label>
+              <label style="display:grid; gap:7px">
+                <span style="font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:0.1em; color:rgba(255,255,255,0.5)">CPC (LKR)</span>
+                <input value="{{ form.cpc }}" onChange="{{ onCpc }}" placeholder="9.80" style="border:1px solid rgba(255,255,255,0.18); background:rgba(255,255,255,0.04); padding:12px 14px; font-size:15px; color:#fff; font-family:'IBM Plex Mono',monospace" />
+              </label>
+              <label style="display:grid; gap:7px">
+                <span style="font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:0.1em; color:rgba(255,255,255,0.5)">CONV. RATE (%)</span>
+                <input value="{{ form.cvr }}" onChange="{{ onCvr }}" placeholder="7.2" style="border:1px solid rgba(255,255,255,0.18); background:rgba(255,255,255,0.04); padding:12px 14px; font-size:15px; color:#fff; font-family:'IBM Plex Mono',monospace" />
+              </label>
+              <label style="display:grid; gap:7px">
+                <span style="font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:0.1em; color:rgba(255,255,255,0.5)">COST / PURCHASE</span>
+                <input value="{{ form.cpp }}" onChange="{{ onCpp }}" placeholder="486" style="border:1px solid rgba(255,255,255,0.18); background:rgba(255,255,255,0.04); padding:12px 14px; font-size:15px; color:#fff; font-family:'IBM Plex Mono',monospace" />
+              </label>
+              <label style="display:grid; gap:7px">
+                <span style="font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:0.1em; color:rgba(255,255,255,0.5)">PURCHASES</span>
+                <input value="{{ form.purchases }}" onChange="{{ onPurchases }}" placeholder="8,600" style="border:1px solid rgba(255,255,255,0.18); background:rgba(255,255,255,0.04); padding:12px 14px; font-size:15px; color:#fff; font-family:'IBM Plex Mono',monospace" />
+              </label>
+            </div>
+
+            <div style="border-top:1px solid rgba(255,255,255,0.12); padding-top:18px; display:grid; gap:12px">
+              <span style="font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:0.1em; color:rgba(255,255,255,0.5)">MONTHLY ROAS — JAN TO AUG</span>
+              <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(78px,1fr)); gap:8px">
+                <label style="display:grid; gap:5px"><span style="font-family:'IBM Plex Mono',monospace; font-size:9.5px; color:rgba(255,255,255,0.4)">JAN</span><input value="{{ form.months.0 }}" onChange="{{ onMo0 }}" style="border:1px solid rgba(255,255,255,0.18); background:rgba(255,255,255,0.04); padding:10px; font-size:14px; color:#fff; font-family:'IBM Plex Mono',monospace; text-align:center" /></label>
+                <label style="display:grid; gap:5px"><span style="font-family:'IBM Plex Mono',monospace; font-size:9.5px; color:rgba(255,255,255,0.4)">FEB</span><input value="{{ form.months.1 }}" onChange="{{ onMo1 }}" style="border:1px solid rgba(255,255,255,0.18); background:rgba(255,255,255,0.04); padding:10px; font-size:14px; color:#fff; font-family:'IBM Plex Mono',monospace; text-align:center" /></label>
+                <label style="display:grid; gap:5px"><span style="font-family:'IBM Plex Mono',monospace; font-size:9.5px; color:rgba(255,255,255,0.4)">MAR</span><input value="{{ form.months.2 }}" onChange="{{ onMo2 }}" style="border:1px solid rgba(255,255,255,0.18); background:rgba(255,255,255,0.04); padding:10px; font-size:14px; color:#fff; font-family:'IBM Plex Mono',monospace; text-align:center" /></label>
+                <label style="display:grid; gap:5px"><span style="font-family:'IBM Plex Mono',monospace; font-size:9.5px; color:rgba(255,255,255,0.4)">APR</span><input value="{{ form.months.3 }}" onChange="{{ onMo3 }}" style="border:1px solid rgba(255,255,255,0.18); background:rgba(255,255,255,0.04); padding:10px; font-size:14px; color:#fff; font-family:'IBM Plex Mono',monospace; text-align:center" /></label>
+                <label style="display:grid; gap:5px"><span style="font-family:'IBM Plex Mono',monospace; font-size:9.5px; color:rgba(255,255,255,0.4)">MAY</span><input value="{{ form.months.4 }}" onChange="{{ onMo4 }}" style="border:1px solid rgba(255,255,255,0.18); background:rgba(255,255,255,0.04); padding:10px; font-size:14px; color:#fff; font-family:'IBM Plex Mono',monospace; text-align:center" /></label>
+                <label style="display:grid; gap:5px"><span style="font-family:'IBM Plex Mono',monospace; font-size:9.5px; color:rgba(255,255,255,0.4)">JUN</span><input value="{{ form.months.5 }}" onChange="{{ onMo5 }}" style="border:1px solid rgba(255,255,255,0.18); background:rgba(255,255,255,0.04); padding:10px; font-size:14px; color:#fff; font-family:'IBM Plex Mono',monospace; text-align:center" /></label>
+                <label style="display:grid; gap:5px"><span style="font-family:'IBM Plex Mono',monospace; font-size:9.5px; color:rgba(255,255,255,0.4)">JUL</span><input value="{{ form.months.6 }}" onChange="{{ onMo6 }}" style="border:1px solid rgba(255,255,255,0.18); background:rgba(255,255,255,0.04); padding:10px; font-size:14px; color:#fff; font-family:'IBM Plex Mono',monospace; text-align:center" /></label>
+                <label style="display:grid; gap:5px"><span style="font-family:'IBM Plex Mono',monospace; font-size:9.5px; color:rgba(255,255,255,0.4)">AUG</span><input value="{{ form.months.7 }}" onChange="{{ onMo7 }}" style="border:1px solid rgba(255,255,255,0.18); background:rgba(255,255,255,0.04); padding:10px; font-size:14px; color:#fff; font-family:'IBM Plex Mono',monospace; text-align:center" /></label>
+              </div>
+            </div>
+
+            <div style="border-top:1px solid rgba(255,255,255,0.12); padding-top:18px; display:grid; gap:12px">
+              <span style="font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:0.1em; color:rgba(255,255,255,0.5)">SPEND SPLIT BY OBJECTIVE (%)</span>
+              <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(130px,1fr)); gap:10px">
+                <label style="display:grid; gap:6px"><span style="font-size:12.5px; color:rgba(255,255,255,0.65)">Conversions</span><input value="{{ form.split.0 }}" onChange="{{ onSp0 }}" style="border:1px solid rgba(255,255,255,0.18); background:rgba(255,255,255,0.04); padding:10px 12px; font-size:14px; color:#fff; font-family:'IBM Plex Mono',monospace" /></label>
+                <label style="display:grid; gap:6px"><span style="font-size:12.5px; color:rgba(255,255,255,0.65)">Lead gen</span><input value="{{ form.split.1 }}" onChange="{{ onSp1 }}" style="border:1px solid rgba(255,255,255,0.18); background:rgba(255,255,255,0.04); padding:10px 12px; font-size:14px; color:#fff; font-family:'IBM Plex Mono',monospace" /></label>
+                <label style="display:grid; gap:6px"><span style="font-size:12.5px; color:rgba(255,255,255,0.65)">Retargeting</span><input value="{{ form.split.2 }}" onChange="{{ onSp2 }}" style="border:1px solid rgba(255,255,255,0.18); background:rgba(255,255,255,0.04); padding:10px 12px; font-size:14px; color:#fff; font-family:'IBM Plex Mono',monospace" /></label>
+                <label style="display:grid; gap:6px"><span style="font-size:12.5px; color:rgba(255,255,255,0.65)">Awareness</span><input value="{{ form.split.3 }}" onChange="{{ onSp3 }}" style="border:1px solid rgba(255,255,255,0.18); background:rgba(255,255,255,0.04); padding:10px 12px; font-size:14px; color:#fff; font-family:'IBM Plex Mono',monospace" /></label>
+              </div>
+              <div style="font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:0.08em; color:{{ splitColor }}">SPLIT TOTAL: {{ splitTotal }}%</div>
+            </div>
+
+            <div style="border-top:1px solid rgba(255,255,255,0.12); padding-top:18px; display:grid; gap:10px">
+              <span style="font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:0.1em; color:rgba(255,255,255,0.5)">VISIBILITY</span>
+              <div style="display:flex; gap:8px">
+                <button onClick="{{ setHidden }}" style="flex:1; background:{{ hiddenSel }}; color:#fff; border:1px solid rgba(255,255,255,0.18); font-family:'Archivo',sans-serif; font-weight:600; font-size:14px; padding:12px; cursor:pointer">Internal only</button>
+                <button onClick="{{ setPublished }}" style="flex:1; background:{{ pubSel }}; color:{{ pubSelText }}; border:1px solid rgba(255,255,255,0.18); font-family:'Archivo',sans-serif; font-weight:600; font-size:14px; padding:12px; cursor:pointer">Published</button>
+              </div>
+              <p style="font-size:12.5px; line-height:1.6; color:rgba(255,255,255,0.5); margin:0">Only published records are averaged into the figures shown on the public site.</p>
+            </div>
+
+            <div style="display:flex; flex-wrap:wrap; gap:10px; border-top:1px solid rgba(255,255,255,0.12); padding-top:18px">
+              <button onClick="{{ onSave }}" style="background:oklch(0.72 0.18 148); color:#07210F; border:none; font-family:'Archivo',sans-serif; font-weight:600; font-size:15px; padding:14px 24px; cursor:pointer" style-hover="background:oklch(0.82 0.19 148)">Save record</button>
+              <button onClick="{{ onClose }}" style="background:none; border:1px solid rgba(255,255,255,0.2); color:#fff; font-family:'Archivo',sans-serif; font-weight:600; font-size:15px; padding:14px 24px; cursor:pointer" style-hover="background:rgba(255,255,255,0.12)">Cancel</button>
+              <sc-if value="{{ canDelete }}" hint-placeholder-val="{{ false }}">
+                <button onClick="{{ onDelete }}" style="margin-left:auto; background:none; border:1px solid rgba(255,255,255,0.2); color:rgba(255,255,255,0.7); font-size:14px; padding:14px 18px; cursor:pointer" style-hover="border-color:#fff; color:#fff">Delete</button>
+              </sc-if>
+            </div>
+          </div>
+        </div>
+      </div>
+    </sc-if>
+  </main>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280,&quot;height&quot;:900}}">
+class Component extends DCLogic {
+  _mqInit() {
+    if (this._mq || typeof window === "undefined" || !window.matchMedia) return;
+    this._mq = window.matchMedia("(max-width: 760px)");
+    this._mqh = () => this.setState({ isMobile: this._mq.matches, menuOpen: this._mq.matches ? !!(this.state && this.state.menuOpen) : false });
+    if (this._mq.addEventListener) this._mq.addEventListener("change", this._mqh); else this._mq.addListener(this._mqh);
+    this._mqh();
+  }
+  mobileVals() {
+    const st = this.state || {};
+    const m = st.isMobile !== undefined ? st.isMobile : (typeof window !== "undefined" && window.innerWidth <= 760);
+    return { isMobile: m, isDesktop: !m, menuOpen: !!st.menuOpen, openMenu: () => this.setState({ menuOpen: true }), closeMenu: () => this.setState({ menuOpen: false }) };
+  }
+
+  state = {
+    query: "",
+    editing: false,
+    editIdx: null,
+    form: null,
+    records: [
+      { account: "Ceylon Leaf Tea Co.", period: "Sep 2025 — Aug 2026", spend: "4180000", roas: "6.1", cpc: "9.80", cvr: "7.2", cpp: "402", purchases: "10,400", status: "Published", months: ["4.1", "4.4", "5.0", "4.8", "5.6", "6.2", "6.8", "7.4"], split: ["52", "18", "22", "8"] },
+      { account: "Marino Beach Residences", period: "Sep 2025 — Aug 2026", spend: "11640000", roas: "3.8", cpc: "16.20", cvr: "4.4", cpp: "1,240", purchases: "3,180", status: "Published", months: ["2.6", "3.0", "3.3", "3.1", "3.6", "4.1", "4.4", "4.9"], split: ["24", "48", "18", "10"] },
+      { account: "Sahana Ayurveda Spa", period: "Sep 2025 — Aug 2026", spend: "2970000", roas: "5.4", cpc: "10.60", cvr: "6.8", cpp: "486", purchases: "6,110", status: "Published", months: ["3.4", "3.8", "4.2", "4.0", "4.9", "5.4", "6.1", "6.6"], split: ["44", "26", "20", "10"] },
+      { account: "Nuwara Outdoor Gear", period: "Sep 2025 — Aug 2026", spend: "6310000", roas: "4.9", cpc: "11.10", cvr: "5.9", cpp: "598", purchases: "8,240", status: "Published", months: ["3.2", "3.5", "4.0", "3.8", "4.4", "5.0", "5.5", "6.0"], split: ["48", "22", "18", "12"] },
+      { account: "Metro Homeware", period: "Jan 2026 — Aug 2026", spend: "3450000", roas: "4.2", cpc: "12.90", cvr: "5.1", cpp: "512", purchases: "4,020", status: "Internal", months: ["3.0", "3.2", "3.6", "3.4", "4.0", "4.4", "4.8", "5.2"], split: ["56", "14", "20", "10"] }
+    ]
+  };
+
+  componentDidMount() {
+    this._mqInit();
+    try { const raw = localStorage.getItem("idearigs.metaAds"); if (raw) this.setState({ records: JSON.parse(raw) }); } catch (e) {}
+  }
+  componentDidUpdate(_, prev) {
+    if (prev.records !== this.state.records) {
+      try { localStorage.setItem("idearigs.metaAds", JSON.stringify(this.state.records)); } catch (e) {}
+    }
+  }
+
+  blank() {
+    return { account: "", period: "", spend: "", roas: "", cpc: "", cvr: "", cpp: "", purchases: "", status: "Internal", months: ["", "", "", "", "", "", "", ""], split: ["", "", "", ""] };
+  }
+
+  open(idx) {
+    const r = idx === null ? this.blank() : this.state.records[idx];
+    this.setState({ editing: true, editIdx: idx, form: JSON.parse(JSON.stringify(r)) });
+  }
+
+  patch(next) { this.setState(s => ({ form: Object.assign({}, s.form, next) })); }
+
+  patchList(key, i, v) {
+    this.setState(s => {
+      const list = (s.form[key] || []).slice();
+      list[i] = v;
+      return { form: Object.assign({}, s.form, { [key]: list }) };
+    });
+  }
+
+  save() {
+    this.setState(s => {
+      const list = s.records.slice();
+      if (s.editIdx === null) list.unshift(s.form); else list[s.editIdx] = s.form;
+      return { records: list, editing: false, editIdx: null, form: null };
+    });
+  }
+
+  remove() {
+    this.setState(s => {
+      const list = s.records.slice();
+      if (s.editIdx !== null) list.splice(s.editIdx, 1);
+      return { records: list, editing: false, editIdx: null, form: null };
+    });
+  }
+
+  fmt(n) {
+    if (!isFinite(n)) return "—";
+    return n.toLocaleString("en-US", { maximumFractionDigits: 0 });
+  }
+
+  renderVals() {
+    const s = this.state;
+    const q = s.query.trim().toLowerCase();
+    const sel = "rgba(255,255,255,0.16)";
+    const off = "rgba(255,255,255,0.04)";
+    const num = v => parseFloat(String(v).replace(/,/g, "")) || 0;
+
+    const rows = s.records
+      .map((r, i) => ({ r: r, i: i }))
+      .filter(x => !q || x.r.account.toLowerCase().includes(q))
+      .map(x => ({
+        account: x.r.account || "Untitled account",
+        period: x.r.period,
+        spend: this.fmt(num(x.r.spend)),
+        roas: x.r.roas,
+        cpc: x.r.cpc,
+        cvr: x.r.cvr,
+        status: x.r.status.toUpperCase(),
+        statusColor: x.r.status === "Published" ? "oklch(0.78 0.16 148)" : "rgba(255,255,255,0.5)",
+        onEdit: () => this.open(x.i)
+      }));
+
+    const pub = s.records.filter(r => r.status === "Published");
+    const spendSum = pub.reduce((a, r) => a + num(r.spend), 0);
+    const weighted = key => spendSum ? pub.reduce((a, r) => a + num(r[key]) * num(r.spend), 0) / spendSum : 0;
+    const labels = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG"];
+    const monthAvgs = labels.map((_, i) => {
+      const vals = pub.map(r => num((r.months || [])[i])).filter(v => v > 0);
+      return vals.length ? vals.reduce((a, b) => a + b, 0) / vals.length : 0;
+    });
+    const peak = Math.max.apply(null, monthAvgs.concat([1]));
+    const chart = labels.map((l, i) => ({
+      label: l,
+      value: monthAvgs[i] ? monthAvgs[i].toFixed(1) : "—",
+      height: Math.max(6, Math.round((monthAvgs[i] / peak) * 100)) + "%"
+    }));
+
+    const f = s.form || this.blank();
+    const splitTotal = (f.split || []).reduce((a, v) => a + num(v), 0);
+
+    return {
+      ...this.mobileVals(),
+      rows: rows,
+      isEmpty: rows.length === 0,
+      count: rows.length,
+      query: s.query,
+      onQuery: e => this.setState({ query: e.target.value }),
+      blendedRoas: spendSum ? weighted("roas").toFixed(2) + "x" : "—",
+      avgCpc: spendSum ? weighted("cpc").toFixed(2) : "—",
+      avgCvr: spendSum ? weighted("cvr").toFixed(1) + "%" : "—",
+      totalSpend: this.fmt(spendSum),
+      chart: chart,
+      editing: s.editing,
+      canDelete: s.editIdx !== null,
+      panelLabel: s.editIdx === null ? "NEW RECORD" : "EDITING RECORD",
+      panelTitle: s.editIdx === null ? "Add ad account data" : (f.account || "Account"),
+      form: f,
+      onNew: () => this.open(null),
+      onClose: () => this.setState({ editing: false, editIdx: null, form: null }),
+      onSave: () => this.save(),
+      onDelete: () => this.remove(),
+      onAccount: e => this.patch({ account: e.target.value }),
+      onPeriod: e => this.patch({ period: e.target.value }),
+      onSpend: e => this.patch({ spend: e.target.value }),
+      onRoas: e => this.patch({ roas: e.target.value }),
+      onCpc: e => this.patch({ cpc: e.target.value }),
+      onCvr: e => this.patch({ cvr: e.target.value }),
+      onCpp: e => this.patch({ cpp: e.target.value }),
+      onPurchases: e => this.patch({ purchases: e.target.value }),
+      onMo0: e => this.patchList("months", 0, e.target.value),
+      onMo1: e => this.patchList("months", 1, e.target.value),
+      onMo2: e => this.patchList("months", 2, e.target.value),
+      onMo3: e => this.patchList("months", 3, e.target.value),
+      onMo4: e => this.patchList("months", 4, e.target.value),
+      onMo5: e => this.patchList("months", 5, e.target.value),
+      onMo6: e => this.patchList("months", 6, e.target.value),
+      onMo7: e => this.patchList("months", 7, e.target.value),
+      onSp0: e => this.patchList("split", 0, e.target.value),
+      onSp1: e => this.patchList("split", 1, e.target.value),
+      onSp2: e => this.patchList("split", 2, e.target.value),
+      onSp3: e => this.patchList("split", 3, e.target.value),
+      splitTotal: splitTotal,
+      splitColor: splitTotal === 100 ? "oklch(0.78 0.16 148)" : "rgba(255,255,255,0.5)",
+      setHidden: () => this.patch({ status: "Internal" }),
+      setPublished: () => this.patch({ status: "Published" }),
+      hiddenSel: f.status === "Internal" ? sel : off,
+      pubSel: f.status === "Published" ? "oklch(0.72 0.18 148)" : off,
+      pubSelText: f.status === "Published" ? "#07210F" : "#fff"
+    };
+  }
+}
+</script>
+</body>
+</html>
